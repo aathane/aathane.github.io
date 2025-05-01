@@ -57,20 +57,27 @@
 
 @media (max-width: 768px) {
   .card-container {
-      gap: 10px; /* Réduit l'écart entre les cartes sur les petits écrans */
+    gap: clamp(6px, 3vw, 16px); /* réduit légèrement l'écart */
+    padding: 10px; /* Réduit le padding pour les petits écrans */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
+    max-width: 100%; /* Empêche le conteneur de dépasser la largeur de l'écran */
   }
 
   .card {
-      width: 150px; /* Réduit la taille des cartes sur les petits écrans */
-      height: 190px;
+    width: clamp(50px, 12vw, 90px);  /* taille plus petite */
+    height: clamp(70px, 18vw, 110px);
+    margin: 0 !important;
   }
 
   .card img {
-      width: 70px;
-      height: 70px;
+    width: clamp(36px, 10vw, 64px); /* image plus petite */
+    height: auto;
   }
 
   .card .card-description {
-      font-size: 16px; /* Réduit la taille du texte sur les petits écrans */
+    display: none;
+  }
+  .card-container .card img {
+    margin: 0;
   }
 }

@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Augustin Athane</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/acceuil.css">
@@ -10,11 +12,9 @@
     <link rel="stylesheet" href="css/skills.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/chatbot.css">
     <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
     <script src="js/main.js" defer></script>
     <!-- Inclusion du script JS pour le chatbot -->
-    <script type="module" src="js/chatbot.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -23,6 +23,8 @@
         <div class="white-container" id="about_content"></div>
         <div class="white-container" id="skills_content"></div>
         <div class="white-container" id="experience_content"></div>
+
+        <div class="white-container" style="height: 120px;"></div> <!-- espace vide -->
         
         <div class="green-container" id="last_page_content"></div>
         <div class="last-section"></div>
@@ -33,23 +35,6 @@
         <div class="modal hidden" id="popup_eventum"></div>
         <div class="modal hidden" id="popup_azul"></div>
         
-        <!-- Bouton rond pour ouvrir le chat -->
-        <!-- <button id="chat-toggle-button" class="chat-toggle-button">Chat</button> -->
-
-        <!-- Pop-up du chatbot (initialement masquée)
-        <div class="chat-popup" id="chat-popup" >
-            <div class="chat-header">
-                <span>Chatbot</span>
-                <button id="chat-close-button" class="chat-close-button">&times;</button>
-            </div>
-            <div id="chat-log" class="chat-log">
-             Les messages du chat apparaîtront ici
-             </div>
-            <div class="chat-input-container">
-            <input type="text" id="user-input" class="chat-input" placeholder="Votre message ici...">
-            <button id="send-button" class="send-button">Envoyer</button>
-            </div>
-        </div> -->
     </div>
 </body>
 </html>

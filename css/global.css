@@ -9,12 +9,12 @@
     --light-gray: #beb6b8;
     --trensparent-white:#ffffffb7;
     --green: #2EAD94;
-    --trensparent-green: #7cad2e6c;
+    --trensparent-green: #2ead946c;
     --yellow: #ff5400;
     --pink: #ff0054;
     --trensparent-pink: #ff00556a;
     --black: #0a0908;
-    --trensparent-gray: #0a090869;
+    --trensparent-gray: #0a090850;
 }
 
 /* Font declarations */
@@ -59,7 +59,7 @@ body {
 /* Titles */
 
 h2 {
-    font-size: 40px;
+    font-size: clamp(24px, 5vw, 40px);
     text-align: center;
     font-family: 'Lora', Arial, sans-serif;
     color: var(--green);
@@ -67,7 +67,7 @@ h2 {
 }
 
 h3 {
-    font-size: 37px;
+    font-size: clamp(22px, 5.5vw, 50px);
     font-family: 'Lora', Arial, sans-serif;
     color: var(--gray);
     margin: 40px 0 20px;
@@ -75,27 +75,27 @@ h3 {
     display: inline-block;
 }
 
-.div_h{
-    text-align: center; /* Centre les éléments inline-block à l'intérieur */
+.div_h {
+    text-align: center;
 }
 
 h3::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Le soulignement démarre juste sous le texte */
+    bottom: 0;
     left: 0;
-    width: 0; /* Débute à zéro, sera animé */
-    height: 20px; /* Hauteur du soulignement, tu peux ajuster selon tes préférences */
-    background-color: var(--trensparent-pink); /* La couleur du rectangle */
-    transition: width 0.3s ease; /* Transition douce pour l'animation */
+    width: 0;
+    height: 0.5em; /* hauteur relative au texte */
+    background-color: var(--trensparent-pink);
+    transition: width 0.3s ease;
 }
 
 h3:hover::after {
-    width: 100%; /* S'étend jusqu'à la largeur complète du h3 au survol */
+    width: 100%;
 }
 
 h4 {
-    font-size: 30px;
+    font-size: clamp(20px, 4vw, 35px);
     font-family: 'Lora', Arial, sans-serif;
     color: var(--gray);
     margin: 40px 0 20px;
@@ -106,27 +106,37 @@ h4 {
 h4::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Le soulignement démarre juste sous le texte */
+    bottom: 0;
     left: 0;
-    width: 0; /* Débute à zéro, sera animé */
-    height: 16px; /* Hauteur du soulignement, tu peux ajuster selon tes préférences */
-    background-color: var(--trensparent-green); /* La couleur du rectangle */
-    transition: width 0.3s ease; /* Transition douce pour l'animation */
+    width: 0;
+    height: 0.45em;
+    background-color: var(--trensparent-green);
+    transition: width 0.3s ease;
 }
 
 h4:hover::after {
-    width: 100%; /* S'étend jusqu'à la largeur complète du h3 au survol */
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    h3::after {
+        width: 100%;
+    }
+
+    h4::after {
+        width: 100%;
+    }
 }
 
 p {
-    font-size: 20px;
+    font-size: clamp(16px, 2.5vw, 20px);
     text-align: justify;
     font-family: 'Lora', Arial, sans-serif;
     color: var(--gray);
     margin: 5px 0 20px;
 }
 
-a{
+a {
     color: var(--green);
     text-decoration: none;
     font-weight: bold;
@@ -256,6 +266,12 @@ li {
     z-index: 1;
 }
 
+@media (max-width: 768px) {
+    .white-container {
+        padding: 0 !important; /* Supprime le padding pour les petits écrans */
+    }
+}
+
 .wrapper {
     display: flex;
     flex-direction: column; 
@@ -294,6 +310,14 @@ li {
 }
 
 
+@media (max-width: 768px) {
+    .green-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+}
 
 
 .grid-container {

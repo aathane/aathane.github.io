@@ -15,7 +15,6 @@ loadContent('about_me.html', 'about_content');
 loadContent('projects.html', 'projects_content');
 loadContent('skills.html', 'skills_content');
 loadContent('experience.html', 'experience_content');
-loadContent('chatbot.html', 'chat_popup');
 // Derniere page
 loadContent('green.html', 'last_page_content');
 
@@ -235,4 +234,26 @@ function closeModal(suffix) {
         // Remettre l'utilisateur à la position de défilement précédente
         window.scrollTo(0, parseInt(scrollY || '0') * -1); // Scroll back to the original position
     }, 300); // Correspond à la durée de la transition CSS
+}
+
+
+// Defilement des images pour les pop up
+
+// Initialisation carrousel
+function handleCarouselClick(direction) {
+    const track = document.getElementById('track');
+    const items = Array.from(track.querySelectorAll('.carousel-item'));
+    const itemWidth = items[0].offsetWidth;
+
+    if (typeof handleCarouselClick.index === 'undefined') {
+        handleCarouselClick.index = 0;
+    }
+
+    if (direction === 'next') {
+        handleCarouselClick.index = (handleCarouselClick.index + 1) % items.length;
+    } else if (direction === 'prev') {
+        handleCarouselClick.index = (handleCarouselClick.index - 1 + items.length) % items.length;
+    }
+
+    track.style.transform = `translateX(-${handleCarouselClick.index * itemWidth}px)`;
 }

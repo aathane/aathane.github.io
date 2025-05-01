@@ -1,50 +1,67 @@
 /* Media and Button Styles */
 
 /* Round image styling */
-.round-image {
-    border-radius: 50%;
-    width: 500px;
-    height: 500px;
-    object-fit: cover;
-    z-index: 2;
-}
-
-/* Square image styling */
-.square-image {
-    width: 500px;
-    height: 500px;
-    object-fit: cover;
-}
-
-/* Ajustement des boutons circulaires */
 .circle-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(16px, 4vw, 40px);
+    margin: clamp(40px, 8vw, 100px) auto;
+    max-width: 600px;
 }
 
-.circle-buttons .circle-button {
-    width: 50px;
-    height: 50px;
+.circle-button {
+    width: clamp(60px, 12vw, 100px);
+    height: clamp(60px, 12vw, 100px);
     background-color: var(--white);
     border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    transition: transform 0.2s ease;
 }
 
-.circle-buttons .circle-button img {
-    width: 100%; /* Ajuste l'image pour ne pas qu'elle soit déformée */
-    height: 100%;
-    object-fit: contain; /* Garde les proportions de l'image */
+.circle-button:hover {
+    transform: scale(1.05);
+}
+
+.circle-button img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
     border-radius: 50%;
 }
 
-.circle-buttons.bottom{
-    position:relative !important;
-    bottom: 0 !important;
-}
+@media (max-width: 768px) {
+    .round-image,
+    .square-image {
+      width: clamp(120px, 50vw, 300px);
+      height: clamp(120px, 50vw, 300px);
+    }
+  
+    .round-image {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  
+    .circle-buttons {
+      gap: 12px;
+      margin-top: 16px;
+    }
+  
+    .circle-buttons .circle-button {
+      width: clamp(36px, 10vw, 50px);
+      height: clamp(36px, 10vw, 50px);
+      border-radius: 50%;
+    }
+  
+    .circle-buttons .circle-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* fill si tu veux couvrir strictement */
+      border-radius: 50%;
+    }
+  }
+  

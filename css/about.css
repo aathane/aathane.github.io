@@ -47,7 +47,6 @@
     margin-top: 300px;
 }
 
-
 .about-right {
     font-size: 330px;
     text-align: right;
@@ -74,9 +73,6 @@
 }
 
 /* Interests Section Styles */
-/* Interests Section Styles */
-/* Interests Section Styles */
-/* Interests Section Styles */
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -87,7 +83,7 @@
 
 .image-item {
     position: relative;
-    width: 300px; /* Largeur de chaque image */
+    width: 200px; /* Largeur de chaque image */
     text-align: center;
     overflow: visible; /* Permet aux parties de l'image de dépasser */
     margin-bottom: 60px; /* Ajoute de l'espace en bas pour la description */
@@ -118,4 +114,36 @@
 
 .image-item:hover .interest {
     display: flex; /* Affiche la description au survol */
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+    .about-background {
+        display: none; /* Hide the about background on smaller screens */
+    }
+
+    .about-container {
+        width: 100%; /* Make the container take the full width */
+        height: 100vh; /* Make the container take the full height */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .text-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+        text-align: justify; /* Justify the text */
+    }
+
+    .image-gallery {
+        gap: 10px; /* Adjust gap between images */
+    }
+
+    .image-item {
+        width: 100px; /* Reduce the width of each image */
+    }
 }

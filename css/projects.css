@@ -6,7 +6,7 @@
     display: flex; /* Utilise flexbox pour le positionnement */
     justify-content: flex-start; /* Aligne le contenu à gauche */
     align-items: flex-start; /* Aligne le contenu en haut */
-    margin: 100px auto; /* Ajoute de l'espace au-dessus et en dessous */
+    margin: clamp(50px, 10vw, 100px) auto; /* Ajuste la marge en fonction de la largeur de l'écran */
     cursor: pointer; 
 }
 
@@ -14,13 +14,20 @@
     position: relative;
     width: 100%;
     max-width: 900px;
-    margin: 100px auto;
+    margin: clamp(50px, 10vw, 100px) auto; /* Ajuste la marge en fonction de la largeur de l'écran */
+
     height: 500px;
+
     overflow: hidden;
     background-size: cover;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     z-index: 1; /* En haut de la hiérarchie */
     margin: 0; /* Supprimer la marge ici */
+
+    /* hints de performance */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .transparent-background {
@@ -141,7 +148,69 @@
 }
 
 
+/* responsive mobile */
+@media (max-width: 768px) {
+  /* Wrapper en colonne, espacement et marges mobiles */
+  .project-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 24px 16px;
+    align-items: stretch;
+    overflow: hidden; /* Prevent content overflow */
+    box-sizing: border-box; /* Ensure padding and border are included in dimensions */
+  }
 
+  /* Image pleine largeur, ratio fixe, centrée et recadrée */
+  .project-container {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16/9;         /* adapte la hauteur automatiquement */
+    background-size: cover;
+    background-position: center;
+    box-shadow: none;
+  }
+
+  /* Contenu textuel dessous */
+  .project-content {
+    position: static;
+    padding: 16px;
+    background: none;
+    color: #fff;
+  }
+
+  /* Titre et texte plus petits pour mobile */
+  .project-text p:first-child {
+    font-size: 1.4em;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .project-text .presentation {
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Cacher les décorations desktop */
+  .green-background,
+  .number-container,
+  .details-button,
+  .arrow, .description{
+    display: none !important;
+  }
+
+
+  
+  .details-button {
+    display: block;
+    margin: 16px auto 0;
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+}
+
+  
 
 /* Styles pour les détails du projet */
 .modal {
@@ -167,7 +236,7 @@
     background-color: var(--white);
     width: 85%; /* Largeur de la modal */
     height: 85%; /* Limite la hauteur de la modal */
-    padding: 0 50px; /* Ajout de padding pour le contenu */
+    padding: 0 clamp(20px, 10vw, 100px); /* Padding responsive with 0 for top and bottom */
     box-sizing: border-box; /* Assure que le padding n'augmente pas la taille de la div */
     overflow-y: auto; /* Ajoute un défilement pour la hauteur si le contenu dépasse */
     overflow-x: hidden; /* Bloque le défilement horizontal */
@@ -182,27 +251,52 @@
 .close-button-container {
     position: sticky;
     top: 0;
-    right: 0;
+    right: calc(clamp(10px, 3vw, 100px) * -1);
     width: 100%;
-    height: 50px;
+    height: clamp(40px, 6vw, 80px); /* hauteur adaptative */
     background-color: transparent;
 }
 
+/* Double la taille du container au format mobile */
+@media (max-width: 768px) {
+    .close-button-container {
+        height: calc(clamp(40px, 6vw, 80px) * 2); /* Double la hauteur */
+    }
+
+    /* Double la taille de la croix au format mobile */
+    .close-button {
+        font-size: calc(clamp(30px, 4vw, 80px) * 2); /* Double la taille */
+    }
+}
+
+/* ——— Style de base ——— */
 .close-button {
     position: absolute;
     top: 0;
-    right: 0;
-    font-size: 45px;
+    right: calc(clamp(10px, 3vw, 100px) * -1);
+    font-size: clamp(30px, 4vw, 80px);
     cursor: pointer;
-    font-weight: bold; /* Ajoute du gras */
-    color: var(--pink); /* Change la couleur en rouge */
-    transition: transform 0.3s ease, color 0.3s ease; /* Transition douce pour l'effet */
-}
+    font-weight: bold;
+    color: var(--pink);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  /* ——— Mobile (<768px) ——— */
+  @media (max-width: 768px) {
+    .close-button-container {
+      height: calc(clamp(40px, 6vw, 80px) * 2);
+    }
+  
+    .close-button {
+      /* on double simplement chaque paramètre de clamp */
+      font-size: clamp(60px, 8vw, 160px);
+    }
+  }
+  
 
 .close-button:hover {
-    transform: rotate(180deg) scale(1.2); /* Rotation de 180 degrés et agrandissement */
+    transform: rotate(180deg) scale(1.2);
 }
-
 
 /* Masque la modale par défaut */
 .hidden {
@@ -359,8 +453,199 @@ body.no-scroll {
     display: block;
 }
 
+/* mobile */
+@media (max-width: 768px) {
+  /* Badge et bouton centrés */
+  .badge-image-container {
+    display: block !important;
+    flex-direction: column;
+    align-items: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+    gap: 4px;
+  }
+  .badge-image-langage {
+    width: clamp(30px, 6vw, 70px) !important; /* Ajuste la taille de l'image selon la largeur de l'écran */
+  }
+  .badge-image-round, .round-c {
+    width: clamp(30px, 6vw, 50px) !important; /* Ajuste la taille selon la largeur de l'écran */
+    height: clamp(30px, 6vw, 50px) !important; /* Ajuste la taille selon la largeur de l'écran */
+    top: 2px  !important; /* Ajuste la position pour mobile */
+    left: 0.4px  !important; /* Ajuste la position pour mobile */
+  }
+}
 
 .long{
     margin: 0 0 60px 0 !important;
     padding: 0 !important;
 }
+
+/* --- Carrousel d'images --- */
+.image-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    margin: 25px auto 25px;
+    overflow: hidden;
+    background-size: cover;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+
+  .carousel-item {
+    flex: 0 0 900px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .carousel-caption {
+    margin-top: 8px;
+    font-size: 1em;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+
+  .carousel-control {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 25px auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-control {
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .carousel-control.prev {
+    left: -50px;
+  }
+  
+  .carousel-control.next {
+    right: -50px;
+  }
+  
+  .carousel-control img {
+    /* Responsive */
+    width: 8vw;
+    min-width: 40px;
+    max-width: 80px;
+    height: auto;
+  }
+  
+  /* On définit pour chaque bouton sa transformation de base via une variable CSS */
+  .carousel-control.prev img {
+    --base-transform: scaleX(-1);
+    transform: var(--base-transform);
+  }
+  
+  .carousel-control.next img {
+    --base-transform: scale(1);
+    transform: var(--base-transform);
+  }
+  
+  /* Keyframes uniques pour flip + scale, réutilisant --base-transform */
+  @keyframes flip-scale {
+    0% {
+      transform: var(--base-transform) scale(1);
+    }
+    50% {
+      transform: var(--base-transform) scale(1.2);
+    }
+    100% {
+      transform: var(--base-transform) scale(1.2);
+    }
+  }
+  
+  /* Application de l’animation au hover */
+  .carousel-control img:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .carousel-control.prev img:hover {
+    transform: scaleX(-1) scale(1.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* responsive mobile */
+  
+  @media (max-width: 768px) {
+    .image-carousel {
+      height: auto;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .carousel-track {
+      flex-wrap: nowrap;
+      width: auto;
+    }
+  
+    .carousel-item {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      max-width: 100%;
+    }
+  
+    .carousel-control {
+      display: none; /* Cache les flèches sur mobile */
+    }
+  
+    .carousel-caption {
+      font-size: 0.9em;
+      padding: 4px 8px;
+      bottom: 5px;
+    }
+  }
+  

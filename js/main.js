@@ -15,7 +15,7 @@ loadContent('about_me.html', 'about_content');
 loadContent('projects.html', 'projects_content');
 loadContent('skills.html', 'skills_content');
 loadContent('experience.html', 'experience_content');
-
+loadContent('chatbot.html', 'chat_popup');
 // Derniere page
 loadContent('green.html', 'last_page_content');
 
@@ -25,7 +25,7 @@ loadContent('pages/taln.html', 'popup_taln');
 loadContent('pages/genetique.html', 'popup_genetique');
 loadContent('pages/eventum.html', 'popup_eventum');
 loadContent('pages/azul.html', 'popup_azul');
-
+loadContent('pages/multi_agents.html', 'popup_multi_agents');
 
 
 
@@ -51,7 +51,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 window.onload = () => {
     const triangles = document.querySelectorAll('.triangle');
     const container = document.getElementById('about_content');
-
+    
     if (container) {
         let lastMouseX = 0;
         let lastMouseY = 0;

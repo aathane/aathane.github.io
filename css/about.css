@@ -10,13 +10,13 @@
     width: 80%;
     min-height: 100vh;
     box-sizing: border-box;
-    background-color: var(--trensparent-white);
+    background-color: var(--white);
     margin-left: 10%;
     margin-right: 10%;
     padding: 20px;
     position: relative; /* Ensure the container is positioned relative for absolute positioning of children */
     z-index: 1; /* Ensure the container is above the background text */
-    border-radius: 30px; /* Add rounded corners */
+    border-radius: 0px; /* Add rounded corners */
 }
 
 /* About background container */
@@ -87,7 +87,7 @@
 
 .image-item {
     position: relative;
-    width: 150px; /* Largeur de chaque image */
+    width: 300px; /* Largeur de chaque image */
     text-align: center;
     overflow: visible; /* Permet aux parties de l'image de dépasser */
     margin-bottom: 60px; /* Ajoute de l'espace en bas pour la description */

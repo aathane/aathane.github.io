@@ -226,23 +226,15 @@ hr.expand {
 }
 
 /* Bulette point */
-ul {
-    list-style-type: disc; /* Utilise des puces pour les éléments de la liste */
-    padding-left: 20px; /* Ajoute du padding à gauche pour indenter la liste */
-    font-size: 20px;
-    text-align: justify;
-    font-family: 'Lora', Arial, sans-serif;
-    color: var(--gray);
-    margin: 5px 0 20px;
-}
-
-li {
-    margin-bottom: 10px; /* Ajoute un espace entre les éléments de la liste */
-    font-size: 20px;
-    text-align: justify;
-    font-family: 'Lora', Arial, sans-serif;
-    color: var(--gray);
-    margin: 5px 0 20px;
+ul, li {
+    font-size: clamp(16px, 2.5vw, 20px); /* Même taille que les paragraphes */
+    text-align: justify; /* Justifie le texte */
+    font-family: 'Lora', Arial, sans-serif; /* Même police que les paragraphes */
+    color: var(--gray); /* Même couleur que les paragraphes */
+    margin: 5px 0 20px; /* Même marge que les paragraphes */
+    line-height: 1.6; /* Ajoute un espacement entre les lignes pour une meilleure lisibilité */
+    list-style-type: disc; /* Conserve les puces */
+    padding-left: 20px; /* Ajoute un padding pour indenter les listes */
 }
 
 /* Containers */
@@ -339,22 +331,29 @@ li {
     margin-bottom: 15px; /* Ajoute un espace entre les éléments à l'intérieur de chaque .grid-item */
 }
 
+/* Responsive img-experience */
 .img-experience {
-    width: 200px; /* Réduit la largeur des images à 200px */
-    height: auto; /* Hauteur automatique pour maintenir le ratio d'aspect */
-    object-fit: cover; /* Assure que l'image couvre toute la boîte sans être déformée */
-    margin-top: 60px;
-    margin-bottom: 60px !important; /* Ajoute une marge de 60px en haut et en bas */
-    transition: transform 0.3s ease; /* Ajoute une transition fluide pour l'effet hover */
+    height: clamp(30px, 5vw, 200px); /* Définit une hauteur flexible */
+    width: auto; /* Maintient le ratio d'aspect en ajustant la largeur */
+    object-fit: cover;
+    margin-top: 30px;
+    margin-bottom: 30px !important;
+    transition: transform 0.3s ease;
 }
 
 .img-experience:hover {
     transform: scale(1.1); /* Agrandit légèrement l'image à 110% de sa taille originale lors du hover */
 }
+
+
 /* Media query pour s'assurer que les éléments passent en une seule colonne sur les petits écrans */
 @media (max-width: 768px) {
     .grid-container {
         grid-template-columns: 1fr; /* Une seule colonne sur les petits écrans */
+    }
+
+    .img-experience {
+        height: clamp(60px, 10vw, 200px); /* Définit une hauteur flexible */
     }
 }
 

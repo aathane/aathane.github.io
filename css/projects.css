@@ -152,43 +152,40 @@
 @media (max-width: 768px) {
   /* Wrapper en colonne, espacement et marges mobiles */
   .project-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin: 24px 16px;
-    align-items: stretch;
-    overflow: hidden; /* Prevent content overflow */
-    box-sizing: border-box; /* Ensure padding and border are included in dimensions */
+    margin: 50px 0 !important;
   }
 
   /* Image pleine largeur, ratio fixe, centrée et recadrée */
   .project-container {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 16/9;         /* adapte la hauteur automatiquement */
+    aspect-ratio: 18/9;         /* adapte la hauteur automatiquement */
     background-size: cover;
     background-position: center;
-    box-shadow: none;
+    position: relative;
   }
 
-  /* Contenu textuel dessous */
-  .project-content {
-    position: static;
-    padding: 16px;
-    background: none;
-    color: #fff;
-  }
+  .project-text {
+    position: absolute;  /* passe en positionnement absolu */
+    bottom: 10px;           /* colle le bas */
+    left: 0;             /* étend sur toute la largeur */
+    width: 100%;
+    background-color: var(--transparent-gray);
+    padding: 10px;       /* Padding uniforme */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    white-space: normal; /* Permet le retour à la ligne */
+    overflow-wrap: break-word; /* Coupe les mots longs si nécessaire */
+}
 
   /* Titre et texte plus petits pour mobile */
   .project-text p:first-child {
-    font-size: 1.4em;
-    margin-bottom: 8px;
+    font-size: 1.8em;
+    padding-bottom: clamp(20px, 8vw, 100px) !important;
     text-align: center;
   }
+
   .project-text .presentation {
-    font-size: 1em;
-    font-style: italic;
-    text-align: center;
+    display: none;
   }
 
   /* Cacher les décorations desktop */
@@ -198,8 +195,6 @@
   .arrow, .description{
     display: none !important;
   }
-
-
   
   .details-button {
     display: block;
@@ -380,11 +375,6 @@ body.no-scroll {
     transform: translateY(-20px); /* Monte la flèche vers le haut */
 }
 
-
-
-
-
-
 /* Rendre le texte plus grand lorsque hover */
 .project-wrapper:hover .project-text {
     transform: translateY(-100px); /* Monte de 100px */
@@ -463,15 +453,20 @@ body.no-scroll {
     visibility: visible !important;
     opacity: 1 !important;
     gap: 4px;
+    position: absolute;
+    top: clamp(5px, 5vw, 20px); /* Ajuste la position verticale selon la taille de l'écran */
+    right: clamp(5px, 5vw, 20px); /* Ajuste la position horizontale selon la taille de l'écran */
   }
+
   .badge-image-langage {
     width: clamp(30px, 6vw, 70px) !important; /* Ajuste la taille de l'image selon la largeur de l'écran */
   }
+  
   .badge-image-round, .round-c {
     width: clamp(30px, 6vw, 50px) !important; /* Ajuste la taille selon la largeur de l'écran */
     height: clamp(30px, 6vw, 50px) !important; /* Ajuste la taille selon la largeur de l'écran */
-    top: 2px  !important; /* Ajuste la position pour mobile */
-    left: 0.4px  !important; /* Ajuste la position pour mobile */
+    top: 2px !important; /* Ajuste la position pour mobile */
+    left: 0.4px !important; /* Ajuste la position pour mobile */
   }
 }
 
@@ -620,6 +615,25 @@ body.no-scroll {
   /* responsive mobile */
   
   @media (max-width: 768px) {
+    .modal {
+      width: 100% !important; /* Prend toute la largeur */
+      height: 100% !important; /* Prend toute la hauteur */
+      background-color: var(--white) !important; /* Fond blanc sans transparence */
+      overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+    }
+
+    .modal-content {
+      width: 100% !important; /* Prend toute la largeur */
+      height: 100% !important; /* Prend toute la hauteur */
+      padding: 20px !important; /* Ajoute un padding pour le contenu */
+      box-sizing: border-box; /* Inclut le padding dans la taille totale */
+      transform: none !important; /* Supprime l'animation de translation */
+    }
+
+    .modal.show {
+      background-color: var(--white) !important; /* Fond blanc sans transparence */
+    }
+    
     .image-carousel {
       height: auto;
       overflow-x: scroll;

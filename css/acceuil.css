@@ -3,32 +3,72 @@
 /* Main container for the homepage */
 .home-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center; /* Centre le contenu horizontalement */
-    text-align: center;  /* Centre le texte */
+    align-items: stretch;
     width: 100%;
-    height: 100vh; /* Occupe toute la hauteur de la page */
-    padding: 0; /* Supprime les paddings */
+    height: 100vh;
+    padding: 0;
     box-sizing: border-box;
     z-index: 3;
+    background-color: var(--light-gray);
+    position: relative;
 }
 
-.text-container{
+.home-hero {
+    padding: 0 clamp(20px, 4vw, 60px);
+    gap: clamp(12px, 2vw, 24px);
+}
+
+
+.home-left {
+    flex: 0 0 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* centre verticalement */
+    align-items: center;     /* centre horizontalement */
+    text-align: center;       /* pour que le texte <h1>, <h2> soit centré */
+}
+
+.home-right {
+    flex: 0 0 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+}
+
+.home-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.home-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: fit-content;
+}
+
+.home-tagline {
+    display: inline-block;
+    color: var(--black);
+    text-align: left;
+    margin: 6px 0 8px;
+    padding: 6px 14px;
+    background-color: var(--white);
+    border-radius: 999px;
+    font-style: italic;
 }
 
 /*shiny*/
 .shin_text{
     font-size: 67px;
-    text-align: left;
+    text-align: center;
     font-family: 'Didot', Arial, sans-serif;
     color: #ffffff;
-    background: linear-gradient(to right, var(--gray) 0, var(--white) 10%, var(--gray) 20%);
+    background: linear-gradient(to right, var(--mid-gray) 0, var(--white) 10%, var(--mid-gray) 20%);
     background-size: 200%;
     background-position: -100%;
     -webkit-background-clip: text;
@@ -38,7 +78,18 @@
     animation-fill-mode: forwards;
     font-weight: 600;
     white-space: nowrap;
-    padding: 10px;
+    padding: 0;
+}
+
+.home-text h2 {
+    color: var(--black);
+}
+
+.home-text #animated-hr {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 @keyframes shine {
@@ -51,16 +102,116 @@
 }
 
 /* Pour un meilleur responsive */
+@media (max-width: 1024px) {
+    .home-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .home-left {
+        flex: 1;
+        order: 2;
+        align-items: center;
+        text-align: center;
+    }
+
+    .home-text {
+        align-items: center;
+        text-align: center;
+    }
+
+    .home-right {
+        order: 1;
+        height: 50vh;
+        width: 100%;
+    }
+
+    .home-links {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     .shin_text {
-        font-size: 40px; /* Réduit la taille pour mobile */
+        font-size: 40px;
+    }
+
+    .home-hero {
+        padding: 0 16px;
     }
 }
 
 @media (max-width: 480px) {
     .shin_text {
-        font-size: 30px; /* Encore plus petit pour les petits écrans */
+        font-size: 30px;
     }
+}
+
+.home-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: -6px;
+}
+
+.circle-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+}
+
+.home-links {
+    position: absolute;
+    top: clamp(16px, 2.5vw, 28px);
+    right: clamp(16px, 4vw, 60px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.home-links a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--white);
+    color: var(--black);
+    background: var(--white);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-style: italic;
+    position: relative;
+    text-decoration: none;
+}
+
+.home-links a:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+.home-links a::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 6px;
+    height: 2px;
+    background-color: var(--black);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.home-links a:hover::after {
+    transform: scaleX(1);
 }
 
 

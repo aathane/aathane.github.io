@@ -28,6 +28,10 @@
   transform: scale(1) !important; /* Toujours visible */
 }
 
+.card.always-visible .card-description {
+  opacity: 1;
+}
+
 .card:hover {
   transform: scale(1.1) !important; /* La carte grossit légèrement au survol */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);

@@ -8,35 +8,76 @@
         <div class="div_h">
             <h4>Expérience à l'international</h4>
         </div>
-        <img class="img-experience" src="assets/img/experience/tsukuba.png" alt="Expérience à l'international">
-        <p>Au cours du semestre de <span class="bold-text">printemps 2024</span>, j'ai eu l'occasion d'étudier à <a class="link" href="https://www.tsukuba.ac.jp/en/">l'université de Tsukuba</a>, l'une des meilleures écoles d'ingénieure du Japon.  </br></br>
-           En plus de m'avoir permis de découvrir la richesse de la <span class="bold-text">culture japonaise</span>, cette expérience m'a permis de vivre et de travailler dans un contexte <span class="bold-text">international</span>. J'ai pu mettre en pratique mes compétences en <span class="bold-text">anglais</span> et j'ai saisi l'occasion pour commencer à apprendre le japonais.</br></br>
-           J'y ai suivi des cours de :</p>
 
-        <ul>
-            <li>Traitement adaptatif des médias (classification, régression, etc.)</li>
-            <li>Simulation numérique</li>
-            <li>Conception d'expérience scientifique</li>
-            <li>Développement logiciel</li>
-        </ul>
-
+        <div class="experience-card" onclick="showModal('exp_international')">
+            <div class="experience-logo">
+                <img src="assets/img/experience/tsukuba.png" alt="Université de Tsukuba">
+            </div>
+            <div class="experience-content">
+                <div class="experience-text">
+                    <p class="experience-title">Université de Tsukuba — Semestre</p>
+                    <p class="experience-summary">Printemps 2024. Études et immersion internationale, cours en data/CS et développement logiciel.</p>
+                </div>
+                <div class="experience-arrow-container">
+                    <button class="details-button experience-button">Plus de détails</button>
+                    <p class="arrow">↑</p>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    
+
     <!-- Expérience professionnelle -->
     <div class="grid-item">
         <div class="div_h">
             <h4>Expérience professionnelle</h4>
         </div>
-        <img class="img-experience" src="assets/img/experience/bioMerieux.png" alt="Expérience professionnelle">
-        
-        <p>Actuellement, je réalise mon stage de fin d'études chez <a class="link" href="https://www.biomerieux.com/">bioMérieux</a>, une entreprise leader mondial dans le domaine du diagnostic in vitro et des solutions innovantes pour la santé publique. Intégré au département des <strong>Data Scientists</strong>, je travaille sur des missions variées combinant la <span class="bold-text">visualisation interactive de données</span> avec Plotly, la création d'applications web avec Streamlit, le packaging de solutions logicielles, le développement d'API, et bien d'autres projets. Ces missions me permettent de contribuer à des solutions technologiques avancées tout en renforçant mes compétences en développement et en analyse de données.</p>
 
-        <img class="img-experience" src="assets/img/experience/DPS-logo-bleu-removebg.png" alt="Expérience professionnelle">
-        
-        <p>Durant mon stage de début septembre 2023 à fin janvier 2024 chez <a class="link" href="https://dps-fr.com/">Digital Product Simulation</a>, une société spécialisée dans l'ingénierie numérique et la simulation, j'ai travaillé au sein du département <strong>Marketing et Business Development</strong> sur des projets innovants liés à l'intelligence artificielle.</p>  
-    </br>  
-    <p>Mes principales responsabilités portaient sur l'optimisation des processus marketing à travers l'intégration de solutions d'IA. J'ai ainsi contribué à la personnalisation des messages de prospection sur LinkedIn, à la création automatisée de contenu marketing et à l'amélioration de l'efficacité des opérations grâce à des outils d'intelligence artificielle.</p>
-    
-    
+        <div class="experience-card" onclick="showModal('exp_efor')">
+            <div class="experience-logo">
+                <img src="assets/img/experience/efor.png" alt="EFOR">
+            </div>
+            <div class="experience-content">
+                <div class="experience-text">
+                    <p class="experience-title">EFOR — CDI</p>
+                    <p class="experience-summary">Data Scientist consultant, apps Streamlit, MinIO, CI/CD et packaging Python.</p>
+                </div>
+                <div class="experience-arrow-container">
+                    <button class="details-button experience-button">Plus de détails</button>
+                    <p class="arrow">↑</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-card" onclick="showModal('exp_biomerieux')">
+            <div class="experience-logo">
+                <img src="assets/img/experience/bioMerieux.png" alt="bioMérieux">
+            </div>
+            <div class="experience-content">
+                <div class="experience-text">
+                    <p class="experience-title">bioMérieux — Stage</p>
+                    <p class="experience-summary">Outils Data Science pour l’analyse MALDI‑TOF, apps Streamlit, API FastAPI, packaging Python.</p>
+                </div>
+                <div class="experience-arrow-container">
+                    <button class="details-button experience-button">Plus de détails</button>
+                    <p class="arrow">↑</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-card" onclick="showModal('exp_dps')">
+            <div class="experience-logo">
+                <img src="assets/img/experience/DPS-logo-bleu-removebg.png" alt="Digital Product Simulation">
+            </div>
+            <div class="experience-content">
+                <div class="experience-text">
+                    <p class="experience-title">Digital Product Simulation — Stage</p>
+                    <p class="experience-summary">Automatisation de la génération de leads et intégration d’IA générative.</p>
+                </div>
+                <div class="experience-arrow-container">
+                    <button class="details-button experience-button">Plus de détails</button>
+                    <p class="arrow">↑</p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>

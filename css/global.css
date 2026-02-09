@@ -4,9 +4,10 @@
 :root {
     --purple: #390099;
     --blue: #2ec4b6;
-    --white: #e9efee;
-    --gray: #333;
-    --light-gray: #beb6b8;
+    --white: #f7f7f4;
+    --gray: #4b4b47;
+    --mid-gray: #adada3;
+    --light-gray: #c5c5bd;
     --trensparent-white:#ffffffb7;
     --green: #2EAD94;
     --trensparent-green: #2ead946c;
@@ -287,14 +288,14 @@ ul, li {
 /* lastpage.css */
 /* global.css */
 
-/* La page verte reste en arrière-plan */
-.green-container {
+/* La page gris reste en arrière-plan */
+.gray-container {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100vh; /* Prend toute la hauteur de la fenêtre */
-    background-color: var(--green);
+    background-color: var(--light-gray);
     display: flex;
     justify-content: center;
     align-items: center;

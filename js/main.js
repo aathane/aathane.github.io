@@ -25,6 +25,10 @@ loadContent('pages/genetique.html', 'popup_genetique');
 loadContent('pages/eventum.html', 'popup_eventum');
 loadContent('pages/azul.html', 'popup_azul');
 loadContent('pages/multi_agents.html', 'popup_multi_agents');
+loadContent('pages/exp_biomerieux.html', 'popup_exp_biomerieux');
+loadContent('pages/exp_dps.html', 'popup_exp_dps');
+loadContent('pages/exp_efor.html', 'popup_exp_efor');
+loadContent('pages/exp_international.html', 'popup_exp_international');
 
 
 
@@ -128,21 +132,38 @@ window.onload = () => {
 document.addEventListener('DOMContentLoaded', () => {
     const navbarLinks = document.querySelectorAll('.navbar a');
 
-    navbarLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
-
-            const targetId = link.getAttribute('href').substring(1); // Récupère l'ID de la section cible
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop,
-                    behavior: 'smooth' // Défilement fluide
-                });
-            }
+    const bindSmoothScroll = (links) => {
+        links.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    });
+    };
+
+    bindSmoothScroll(navbarLinks);
+});
+
+// Delegation for dynamically injected home links
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('.home-links a');
+    if (!link) return;
+    event.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+        window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+        });
+    }
 });
 
 

@@ -474,6 +474,122 @@ body.no-scroll {
     padding: 0 !important;
 }
 
+/* Experience cards (distinct from projects) */
+.experience-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    background-color: var(--white);
+    padding: 24px 28px;
+    margin: 28px auto;
+    max-width: 900px;
+    height: 420px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.experience-logo {
+    width: 161px;
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.experience-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.experience-logo img:hover {
+    transform: scale(1.1);
+}
+
+.experience-content {
+    text-align: center;
+    max-width: 700px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 1em;
+}
+
+.experience-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.experience-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 0 6px;
+    color: var(--black);
+    text-align: center;
+}
+
+.experience-summary {
+    font-size: 1em;
+    color: var(--gray);
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.experience-button {
+    font-size: 30px !important;
+    padding: 10px 10px !important;
+}
+.experience-arrow-container {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 16px;
+}
+
+.experience-arrow-container .details-button {
+    position: relative;
+    z-index: 1;
+}
+
+.experience-arrow-container .arrow {
+    font-size: 40px;
+    font-weight: bolder;
+    color: var(--white);
+    margin-top: -90px;
+    position: relative;
+    z-index: 0;
+    transition: transform 0.5s ease;
+}
+
+.experience-arrow-container .details-button:hover + .arrow {
+    transform: translateY(-20px);
+}
+
+@media (max-width: 768px) {
+    .experience-card {
+        padding: 18px 20px;
+        margin: 20px auto;
+        height: auto;
+    }
+
+    .experience-logo {
+        width: 100px;
+        height: 70px;
+    }
+
+    .experience-title {
+        font-size: 1.3em;
+    }
+}
+
 /* --- Carrousel d'images --- */
 .image-carousel {
     position: relative;

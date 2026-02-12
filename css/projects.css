@@ -442,6 +442,27 @@ body.no-scroll {
     display: block;
 }
 
+/* Experience: badges animés au hover */
+.experience-card .badge-image-container {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+}
+
+.experience-card:hover .badge-image-container {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.experience-card .badge-python {
+    right: 30px;
+    left: auto;
+    bottom: 20px;
+}
+
+
 /* mobile */
 @media (max-width: 768px) {
   /* Badge et bouton centrés */
@@ -487,6 +508,7 @@ body.no-scroll {
     height: 420px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    position: relative;
 }
 
 .experience-logo {
@@ -531,6 +553,32 @@ body.no-scroll {
     margin: 0 0 6px;
     color: var(--black);
     text-align: center;
+}
+
+.formation-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    width: 100%;
+    margin: 4px 0 12px;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.formation-date,
+.formation-location {
+    font-size: 0.95em;
+    color: var(--gray);
+    font-weight: bold;
+}
+
+.formation-date {
+    text-align: left;
+}
+
+.formation-location {
+    text-align: right;
 }
 
 .experience-summary {
@@ -587,6 +635,18 @@ body.no-scroll {
 
     .experience-title {
         font-size: 1.3em;
+    }
+
+    .formation-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 10px;
+    }
+
+    .formation-date,
+    .formation-location {
+        text-align: center;
     }
 }
 

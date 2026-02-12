@@ -1,0 +1,41 @@
+/* Certifications section */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 20px 30px 40px;
+  box-sizing: border-box;
+}
+
+.certification-card {
+  background-color: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  padding: 14px;
+  margin: 0;
+}
+
+.certification-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.certification-card figcaption {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--black);
+}
+
+@media (max-width: 768px) {
+  .certifications-grid {
+    padding: 10px 16px 30px;
+    gap: 16px;
+  }
+
+  .certification-card {
+    padding: 10px;
+  }
+}

@@ -17,13 +17,63 @@
   background-color: var(--white);
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  overflow: visible;
   transform: scale(1); /* Par défaut, la carte est à sa taille normale */
   transition: transform 0.3s ease-in-out;
   text-align: center;
   position: relative; /* Pour l'effet sur l'image */
+  z-index: 1;
+}
+.skill-badges {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  z-index: 6;
 }
 
+.skill-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-decoration: none;
+  position: relative;
+  padding: 0;
+}
+
+.skill-badge img {
+  width: 32px;
+  height: auto;
+  margin: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.skill-badge-text {
+  display: none;
+  position: absolute;
+  bottom: -48px;
+  right: -10px;
+  width: 110px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  z-index: 10;
+}
+
+.skill-badge:hover .skill-badge-text {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
 .card.always-visible {
   transform: scale(1) !important; /* Toujours visible */
 }
@@ -35,6 +85,7 @@
 .card:hover {
   transform: scale(1.1) !important; /* La carte grossit légèrement au survol */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  z-index: 5;
 }
 
 .card img {
@@ -43,6 +94,13 @@
   object-fit: contain; /* Assure que l'image n'est pas déformée */
   margin-top: 15px; /* Ajoute du margin en haut pour éloigner l'image du bord supérieur */
   transition: transform 0.3s ease-in-out; /* Ajoute une légère animation à l'image */
+}
+
+.card .skill-badge img {
+  width: 30px;
+  height: auto;
+  max-width: none;
+  margin: 0;
 }
 
 .card .card-description {
@@ -84,4 +142,18 @@
   .card-container .card img {
     margin: 0;
   }
+  .skill-badges {
+    bottom: 6px;
+    right: 6px;
+  }
+
+  .skill-badge img {
+    width: 20px;
+  }
+
+  .skill-badge-text {
+    display: none;
+  }
 }
+
+

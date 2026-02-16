@@ -15,11 +15,18 @@
   margin: 0;
 }
 
+.certification-card a {
+  display: block;
+  text-decoration: none;
+}
+
 .certification-card img {
   width: 100%;
-  height: auto;
+  height: 220px;
   display: block;
   border-radius: 10px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .certification-card figcaption {
@@ -37,5 +44,9 @@
 
   .certification-card {
     padding: 10px;
+  }
+
+  .certification-card img {
+    height: 180px;
   }
 }

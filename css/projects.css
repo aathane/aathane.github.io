@@ -507,8 +507,12 @@ body.no-scroll {
     max-width: 900px;
     height: 420px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    cursor: default;
     position: relative;
+}
+
+.experience-card[onclick] {
+    cursor: pointer;
 }
 
 .experience-logo {

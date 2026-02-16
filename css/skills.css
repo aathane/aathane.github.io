@@ -143,16 +143,21 @@
     margin: 0;
   }
   .skill-badges {
-    bottom: 6px;
-    right: 6px;
+    display: none !important;
   }
 
-  .skill-badge img {
-    width: 20px;
+  .card .skill-badge img {
+    width: 18px;
   }
 
   .skill-badge-text {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-badges {
+    display: none !important;
   }
 }
 

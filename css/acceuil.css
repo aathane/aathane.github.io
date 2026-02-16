@@ -142,11 +142,72 @@
     .home-hero {
         padding: 0 16px;
     }
+
+    .home-links {
+        display: none;
+    }
+
+    .home-right {
+        width: 100%;
+        height: auto;
+        justify-content: center;
+    }
+
+    .home-image {
+        width: 86vw;
+        max-width: 360px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .home-tagline {
+        font-size: 14px;
+        padding: 6px 12px;
+        max-width: calc(100vw - 36px);
+        text-align: center;
+    }
+
+    .home-text #animated-hr {
+        width: min(240px, 72vw);
+    }
 }
 
 @media (max-width: 480px) {
     .shin_text {
         font-size: 30px;
+    }
+
+    .home-container {
+        min-height: 100vh;
+        padding: 14px 0 18px;
+    }
+
+    .home-right {
+        order: 1;
+        margin: 24px auto 12px;
+    }
+
+    .home-image {
+        width: 82vw;
+        max-width: 300px;
+    }
+
+    .home-left {
+        order: 2;
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        padding: 0 10px;
+        margin-top: 0;
+    }
+
+    .home-tagline {
+        font-size: 12px;
+        padding: 6px 10px;
+        max-width: calc(100vw - 28px);
+    }
+
+    .home-text #animated-hr {
+        width: min(180px, 58vw);
     }
 }
 
@@ -285,4 +346,11 @@
     transform: rotate(225deg); 
     top: 50%; 
     left: 85%;
+}
+
+/* Mobile override placed at end to prevent later rules from re-enabling links */
+@media (max-width: 768px) {
+    .home-links {
+        display: none !important;
+    }
 }

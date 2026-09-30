@@ -196,6 +196,10 @@
     display: none !important;
   }
   
+.arrow .colored{
+    color: var(--pink);
+}
+
   .details-button {
     display: block;
     margin: 16px auto 0;
@@ -780,7 +784,7 @@ body.no-scroll {
     }
   }
   
-  /* Application de l’animation au hover */
+  /* Application de l'animation au hover */
   .carousel-control img:hover {
     transform: scale(1.2);
     transition: transform 0.3s ease-in-out;

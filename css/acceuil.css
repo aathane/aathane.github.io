@@ -54,7 +54,7 @@
 .home-tagline {
     display: inline-block;
     color: var(--black);
-    text-align: left;
+    text-align: center;
     margin: 6px 0 8px;
     padding: 6px 14px;
     background-color: var(--white);
@@ -78,7 +78,9 @@
     animation-fill-mode: forwards;
     font-weight: 600;
     white-space: nowrap;
-    padding: 0;
+    padding: 20px;
+    /* Le texte est penchée donc il parrait decentrer vers la gauche */
+    transform: translateX(10px);
 }
 
 .home-text h2 {

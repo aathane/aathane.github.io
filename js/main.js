@@ -16,6 +16,7 @@ loadContent('projects.html', 'projects_content');
 loadContent('skills.html', 'skills_content');
 loadContent('certifications.html', 'certifications_content');
 loadContent('experience.html', 'experience_content');
+
 // Derniere page
 loadContent('green.html', 'last_page_content');
 

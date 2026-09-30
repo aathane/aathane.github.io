@@ -1,0 +1,249 @@
+@use '../abstracts' as *;
+
+.home-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $light-gray;
+  z-index: 3;
+
+  @include media-down(lg) {
+    flex-direction: column;
+  }
+
+  @include media-down(sm) {
+    padding: 14px 0 18px;
+  }
+}
+
+.home-hero {
+  padding: 0 clamp(16px, 4vw, 60px);
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.home-left {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @include media-down(lg) {
+    flex: 1;
+    order: 2;
+  }
+
+  @include media-down(sm) {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding: 0 10px;
+  }
+}
+
+.home-right {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include media-down(lg) {
+    display: none;
+  }
+
+  @include media-down(md) {
+    display: none;
+  }
+
+  @include media-down(sm) {
+    display: none;
+  }
+}
+
+.home-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+
+  @include media-down(md) {
+    width: 86vw;
+    max-width: 360px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  @include media-down(sm) {
+    width: 82vw;
+    max-width: 300px;
+  }
+}
+
+.home-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: fit-content;
+
+  @include media-down(lg) {
+    align-items: center;
+    text-align: center;
+  }
+
+  h2 {
+    color: $black;
+  }
+
+  // L'ID est volontairement plus spécifique que hr.expand
+  #animated-hr {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+
+    @include media-down(md) {
+      width: min(240px, 72vw);
+    }
+
+    @include media-down(sm) {
+      width: min(180px, 58vw);
+    }
+  }
+}
+
+.home-tagline {
+  display: inline-block;
+  margin: 6px 0 8px;
+  padding: 6px 14px;
+  text-align: center;
+  font-style: italic;
+  color: $black;
+  background-color: $white;
+  border-radius: $radius-pill;
+
+  @include media-down(md) {
+    max-width: calc(100vw - 36px);
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  @include media-down(sm) {
+    max-width: calc(100vw - 28px);
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+// Titre « brillant » animé
+.shin_text {
+  padding: 20px;
+  font-family: $font-display;
+  font-size: clamp(30px, 4vw + 10px, 67px);
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  color: $white;
+  background: linear-gradient(to right, $mid-gray 0, $white 10%, $mid-gray 20%);
+  background-size: 200%;
+  background-position: -100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  // Le texte est penché : on le recentre visuellement
+  transform: translateX(10px);
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100%;
+  }
+
+  100% {
+    background-position: 100%;
+  }
+}
+
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: -6px;
+}
+
+.home-actions .circle-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 6px 10px;
+  background: rgba($white, 0.08);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: $radius-pill;
+  backdrop-filter: blur(6px);
+}
+
+// Liens en haut à droite (masqués sur mobile)
+.home-links {
+  position: absolute;
+  top: clamp(16px, 2.5vw, 28px);
+  right: clamp(16px, 4vw, 60px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @include media-down(lg) {
+    top: 24px;
+    left: 50%;
+    right: auto;
+    width: 100%;
+    transform: translateX(-50%);
+    justify-content: center;
+  }
+
+  @include media-down(md) {
+    display: none;
+  }
+
+  a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $black;
+    background: $white;
+    border: 1px solid $white;
+    border-radius: $radius-pill;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 6px;
+      height: 2px;
+      background-color: $black;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}

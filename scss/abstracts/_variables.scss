@@ -1,0 +1,102 @@
+// ==========================================================================
+// Variables : couleurs, typo, breakpoints, rayons, ombres
+// ==========================================================================
+
+// --- Chemin des polices (relatif au CSS compilé) ---------------------------
+$font-path: '../assets/fonts' !default;
+
+// --- Couleurs --------------------------------------------------------------
+$white:       #f7f7f4;
+$gray:        #4b4b47;
+$mid-gray:    #adada3;
+$light-gray:  #c5c5bd;
+$black:       #0a0908;
+
+$green:       #2ead94;
+$pink:        #ff0054;
+$orange:      #ee6c4d;
+$light-red:   #ff9696;
+
+$navy:        #0a192f;
+$navy-hover:  #041b35;
+
+$purple:      #390099;
+$blue:        #2ec4b6;
+$yellow:      #ff5400;
+
+$trensparent-white: rgba(255, 255, 255, 0.72);
+$trensparent-gray:  rgba($black, 0.21);
+$trensparent-green: rgba($green, 0.42);
+$trensparent-pink:  rgba($pink, 0.42);
+
+$green-translucent: rgba($green, 0.42);
+$pink-translucent:  rgba($pink, 0.42);
+
+$palette: (
+  'white':             $white,
+  'gray':              $gray,
+  'mid-gray':          $mid-gray,
+  'light-gray':        $light-gray,
+  'black':             $black,
+  'green':             $green,
+  'pink':              $pink,
+  'orange':            $orange,
+  'light-red':         $light-red,
+  'purple':            $purple,
+  'blue':              $blue,
+  'yellow':            $yellow,
+  'navy':              $navy,
+  'navy-hover':        $navy-hover,
+  'trensparent-white': $trensparent-white,
+  'trensparent-gray':  $trensparent-gray,
+  'trensparent-green': $trensparent-green,
+  'trensparent-pink':  $trensparent-pink,
+  'green-translucent': $green-translucent,
+  'pink-translucent':  $pink-translucent,
+);
+// Exportées en custom properties (:root) pour un usage runtime éventuel
+$palette: (
+  'white':             $white,
+  'gray':              $gray,
+  'mid-gray':          $mid-gray,
+  'light-gray':        $light-gray,
+  'black':             $black,
+  'green':             $green,
+  'pink':              $pink,
+  'orange':            $orange,
+  'light-red':         $light-red,
+  'navy':              $navy,
+  'navy-hover':        $navy-hover,
+  'green-translucent': $green-translucent,
+  'pink-translucent':  $pink-translucent,
+  
+);
+
+// --- Typographie (3 familles maximum) --------------------------------------
+$font-body:    'Lora', Georgia, sans-serif;
+$font-heading: 'Lora', Georgia, serif;
+$font-display: 'Didot', 'Bodoni MT', Georgia, serif;
+
+// --- Breakpoints (max-width) -----------------------------------------------
+$breakpoints: (
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1056px,
+);
+
+// --- Rayons ----------------------------------------------------------------
+$radius-sm:   8px;
+$radius-md:   10px;
+$radius-lg:   14px;
+$radius-pill: 999px;
+
+// --- Ombres ----------------------------------------------------------------
+$shadow-nav:        0 4px 6px  rgba($black, 0.1);
+$shadow-box:        0 4px 8px  rgba($black, 0.2);
+$shadow-btn:        0 4px 10px rgba($black, 0.25);
+$shadow-cert:       0 8px 22px rgba($black, 0.2);
+$shadow-card:       0 10px 20px rgba($black, 0.2);
+$shadow-card-hover: 0 15px 25px rgba($black, 0.3);
+
+// --- Transitions -----------------------------------------------------------
+$transition-base: 0.3s ease;

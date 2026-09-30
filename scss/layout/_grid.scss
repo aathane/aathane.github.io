@@ -1,0 +1,47 @@
+@use '../abstracts' as *;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 30px;
+
+  @include media-down(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-item {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  align-self: start;
+  text-align: center;
+
+  h4,
+  img,
+  p {
+    margin-bottom: 15px;
+  }
+}
+
+.img-experience {
+  height: clamp(30px, 5vw, 200px);
+  width: auto;
+  margin: 30px 0;
+  object-fit: cover;
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @include media-down(md) {
+    height: clamp(60px, 10vw, 200px);
+  }
+}
+
+// Spécificité suffisante pour battre « .grid-item img »
+.grid-item .img-experience {
+  margin-bottom: 30px;
+}

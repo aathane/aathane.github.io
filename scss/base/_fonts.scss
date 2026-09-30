@@ -1,0 +1,18 @@
+@use '../abstracts' as *;
+
+// Polices de titres uniquement : le corps de texte utilise la pile système.
+@font-face {
+  font-family: 'Didot';
+  src: url('#{$font-path}/Didot.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('#{$font-path}/Lora.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

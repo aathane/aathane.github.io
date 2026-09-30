@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+h1 {
+  font-family: $font-display;
+  font-size: clamp(36px, 7vw, 67px);
+  text-align: left;
+  color: $white;
+  margin: 0;
+}
+
+h2 {
+  font-family: $font-heading;
+  font-size: clamp(24px, 5vw, 40px);
+  text-align: center;
+  color: $green;
+  margin: 5px 0 20px;
+}
+
+h3 {
+  @include heading-highlight(clamp(22px, 5.5vw, 50px), $pink-translucent, 0.5em);
+}
+
+h4 {
+  @include heading-highlight(clamp(20px, 4vw, 35px), $green-translucent, 0.45em);
+}
+
+p {
+  @include body-text;
+}
+
+// Titre « About » (police display)
+.about {
+  font-family: $font-display;
+  font-size: 60px;
+  text-align: center;
+  color: $gray;
+  margin: 5px 0 20px;
+}

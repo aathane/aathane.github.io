@@ -1,0 +1,16 @@
+@use '../abstracts' as *;
+
+// Ligne qui s'étend (ajouter la classe .expand en JS)
+hr {
+  width: 1px;
+  margin: 20px 0;
+  border: none;
+  border-top: 2px solid $white;
+  opacity: 0;
+  transition: width 2s cubic-bezier(0.25, 1, 0.5, 1) 1s, opacity 5s ease-out;
+
+  &.expand {
+    width: 60%;
+    opacity: 1;
+  }
+}

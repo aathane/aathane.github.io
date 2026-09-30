@@ -1,0 +1,128 @@
+@use '../abstracts' as *;
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 0 30px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @include media-down(md) {
+    gap: clamp(6px, 3vw, 16px);
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 100%;
+  }
+}
+
+.card {
+  position: relative;
+  width: 180px;
+  height: 220px;
+  padding: 20px 10px 10px;
+  box-sizing: border-box;
+  overflow: visible;
+  flex: 0 0 180px;
+  transform: scale(1) !important;
+
+  text-align: center;
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+
+  transition: transform $transition-base;
+
+  z-index: 2;
+
+
+  img {
+    height: 90px;
+    max-width: 150px;
+    margin-top: 15px;
+    object-fit: contain;
+    transition: transform $transition-base;
+  }
+
+  .card-description {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+
+  &.always-visible .card-description,
+  &:hover .card-description {
+    opacity: 1;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: $shadow-card-hover;
+    z-index: 5;
+  }
+
+  @include media-down(md) {
+    width: clamp(50px, 12vw, 90px);
+    height: clamp(70px, 18vw, 110px);
+
+    img {
+      width: clamp(36px, 10vw, 64px);
+      height: auto;
+      margin: 0;
+    }
+
+    .card-description {
+      display: none;
+    }
+  }
+}
+
+// Badges de compétences (coin bas-droit de la carte)
+.skill-badges {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  z-index: 6;
+
+  @include media-down(md) {
+    display: none;
+  }
+}
+
+.skill-badge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0;
+
+  img {
+    width: 30px;
+    height: auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  &:hover .skill-badge-text {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-badge-text {
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+  font-weight: bold;
+  z-index: 10;
+  @include tooltip(-48px, -10px);
+  transition: opacity $transition-base, visibility $transition-base, transform $transition-base;
+}

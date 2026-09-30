@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .project-wrapper {
     position: relative;
     width: 100%; /* Prend toute la largeur disponible */
@@ -20,7 +22,7 @@
 
     overflow: hidden;
     background-size: cover;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba($black, 0.5);
     z-index: 1; /* En haut de la hiérarchie */
     margin: 0; /* Supprimer la marge ici */
 
@@ -36,7 +38,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--trensparent-gray);
+    background-color: $trensparent-gray;
     z-index: 2; /* Au-dessus du contenu */
 }
 
@@ -46,7 +48,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--green);
+    background-color: $green;
     z-index: 2; /* Au-dessus du contenu */
     transform: translateX(-100%); /* Fait disparaître le fond vert à gauche */
     transition: transform 0.5s ease; /* Transition pour le mouvement */
@@ -128,6 +130,7 @@
     overflow: hidden; 
     margin: 0; /* Élimine les marges */
     padding: 0; /* Élimine les remplissages */
+    font-family: $font-heading !important;
 }
 
 /* Animation pour le changement de couleur */
@@ -149,7 +152,7 @@
 
 
 /* responsive mobile */
-@media (max-width: 768px) {
+@include media-down(md) {
   /* Wrapper en colonne, espacement et marges mobiles */
   .project-wrapper {
     margin: 50px 0 !important;
@@ -170,7 +173,7 @@
     bottom: 10px;           /* colle le bas */
     left: 0;             /* étend sur toute la largeur */
     width: 100%;
-    background-color: var(--transparent-gray);
+    background-color: rgba($black, 0.6);
     padding: 10px;       /* Padding uniforme */
     box-sizing: border-box; /* Inclut le padding dans la largeur totale */
     white-space: normal; /* Permet le retour à la ligne */
@@ -197,7 +200,7 @@
   }
   
 .arrow .colored{
-    color: var(--pink);
+    color: $pink;
 }
 
   .details-button {
@@ -227,11 +230,11 @@
 }
 
 .modal.show {
-    background-color: rgba(0, 0, 0, 0.7); /* Remplace le fond par noir semi-transparent */
+    background-color: rgba($black, 0.7); /* Remplace le fond par noir semi-transparent */
 }
 
 .modal-content {
-    background-color: var(--white);
+    background-color: $white;
     width: 85%; /* Largeur de la modal */
     height: 85%; /* Limite la hauteur de la modal */
     padding: 0 clamp(20px, 10vw, 100px); /* Padding responsive with 0 for top and bottom */
@@ -256,7 +259,7 @@
 }
 
 /* Double la taille du container au format mobile */
-@media (max-width: 768px) {
+@include media-down(md) {
     .close-button-container {
         height: calc(clamp(40px, 6vw, 80px) * 2); /* Double la hauteur */
     }
@@ -275,12 +278,16 @@
     font-size: clamp(30px, 4vw, 80px);
     cursor: pointer;
     font-weight: bold;
-    color: var(--pink);
-    transition: transform 0.3s ease, color 0.3s ease;
+    color: $pink;
+    transition: color 0.5s ease-in-out;
+
+    &:hover {
+        color: $purple !important;
+    }
   }
   
   /* ——— Mobile (<768px) ——— */
-  @media (max-width: 768px) {
+  @include media-down(md) {
     .close-button-container {
       height: calc(clamp(40px, 6vw, 80px) * 2);
     }
@@ -290,11 +297,7 @@
       font-size: clamp(60px, 8vw, 160px);
     }
   }
-  
 
-.close-button:hover {
-    transform: rotate(180deg) scale(1.2);
-}
 
 /* Masque la modale par défaut */
 .hidden {
@@ -345,8 +348,8 @@ body.no-scroll {
 
 .details-button {
     display: inline-block; /* Affichage en ligne */
-    background-color: var(--pink) !important; /* Couleur de fond du bouton */
-    color: var(--white) !important; /* Couleur du texte */
+    background-color: $pink !important; /* Couleur de fond du bouton */
+    color: $white !important; /* Couleur du texte */
     font-size: 30px !important; /* Taille de la police */
     border: none; /* Supprime la bordure */
     padding: 10px 20px; /* Ajoute du padding */
@@ -361,7 +364,7 @@ body.no-scroll {
 .arrow {
     font-size: 40px; /* Taille de la flèche */
     font-weight: bolder;
-    color: var(--white); /* Couleur de la flèche */
+    color: $white; /* Couleur de la flèche */
     margin-top: -90px; /* Espace négatif pour que la flèche touche le bouton */
     transition: transform 0.5s ease; /* Transition pour le mouvement de la flèche */
     position: relative; /* Pour le positionnement par rapport au bouton */
@@ -370,7 +373,7 @@ body.no-scroll {
 
 /* Lorsque le bouton est survolé, la couleur change et la flèche monte */
 .details-button:hover {
-    background-color: var(--purple) !important; /* Couleur violet au survol */
+    background-color: $purple !important; /* Couleur violet au survol */
 }
 
 /* Lorsque le bouton est survolé, la flèche monte */
@@ -424,7 +427,7 @@ body.no-scroll {
     left: 0;
     width: 60px; /* Diamètre du cercle */
     height: 60px; /* Diamètre du cercle */
-    background-color: var(--white); /* Couleur de fond avec une légère transparence */
+    background-color: $white; /* Couleur de fond avec une légère transparence */
     border-radius: 50%; /* Rend le fond circulaire */
     z-index: 4; /* Place le cercle derrière l'image, mais au-dessus du conteneur */
 }
@@ -468,7 +471,7 @@ body.no-scroll {
 
 
 /* mobile */
-@media (max-width: 768px) {
+@include media-down(md) {
   /* Badge et bouton centrés */
   .badge-image-container {
     display: block !important;
@@ -505,12 +508,12 @@ body.no-scroll {
     flex-direction: column;
     align-items: center;
     gap: 18px;
-    background-color: var(--white);
+    background-color: $white;
     padding: 24px 28px;
     margin: 28px auto;
     max-width: 900px;
     height: 420px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba($black, 0.5);
     cursor: default;
     position: relative;
 }
@@ -559,7 +562,7 @@ body.no-scroll {
     font-size: 1.5em;
     font-weight: bold;
     margin: 0 0 6px;
-    color: var(--black);
+    color: $black;
     text-align: center;
 }
 
@@ -577,7 +580,7 @@ body.no-scroll {
 .formation-date,
 .formation-location {
     font-size: 0.95em;
-    color: var(--gray);
+    color: $gray;
     font-weight: bold;
 }
 
@@ -591,7 +594,7 @@ body.no-scroll {
 
 .experience-summary {
     font-size: 1em;
-    color: var(--gray);
+    color: $gray;
     margin: 0 0 8px;
     text-align: center;
 }
@@ -618,7 +621,7 @@ body.no-scroll {
 .experience-arrow-container .arrow {
     font-size: 40px;
     font-weight: bolder;
-    color: var(--white);
+    color: $white;
     margin-top: -90px;
     position: relative;
     z-index: 0;
@@ -629,7 +632,7 @@ body.no-scroll {
     transform: translateY(-20px);
 }
 
-@media (max-width: 768px) {
+@include media-down(md) {
     .experience-card {
         padding: 18px 20px;
         margin: 20px auto;
@@ -667,7 +670,7 @@ body.no-scroll {
     margin: 25px auto 25px;
     overflow: hidden;
     background-size: cover;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba($black, 0.5);
     z-index: 1;
     will-change: transform;
     backface-visibility: hidden;
@@ -700,8 +703,8 @@ body.no-scroll {
   .carousel-caption {
     margin-top: 8px;
     font-size: 1em;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    color: $white;
+    text-shadow: 0 0 5px rgba($black, 0.7);
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -712,8 +715,8 @@ body.no-scroll {
   }
 
   .carousel-control {
-    background: rgba(0,0,0,0.6);
-    color: #fff;
+    background: rgba($black, 0.6);
+    color: $white;
     border: none;
     width: 50px;
     height: 50px;
@@ -797,11 +800,11 @@ body.no-scroll {
   
   /* responsive mobile */
   
-  @media (max-width: 768px) {
+  @include media-down(md) {
     .modal {
       width: 100% !important; /* Prend toute la largeur */
       height: 100% !important; /* Prend toute la hauteur */
-      background-color: var(--white) !important; /* Fond blanc sans transparence */
+      background-color: $white !important; /* Fond blanc sans transparence */
       overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
     }
 
@@ -814,7 +817,7 @@ body.no-scroll {
     }
 
     .modal.show {
-      background-color: var(--white) !important; /* Fond blanc sans transparence */
+      background-color: $white !important; /* Fond blanc sans transparence */
     }
     
     .image-carousel {

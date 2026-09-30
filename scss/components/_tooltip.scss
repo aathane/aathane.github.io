@@ -1,0 +1,7 @@
+@use '../abstracts' as *;
+
+.description {
+  display: none;
+  z-index: 5;
+  @include tooltip(-80px, -30px);
+}

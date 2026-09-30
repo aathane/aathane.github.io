@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+
+.div_h {
+  text-align: center;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.underline-pink {
+  text-decoration: underline;
+  text-decoration-color: $pink;
+  text-decoration-thickness: 3px;
+}

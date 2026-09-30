@@ -1,0 +1,51 @@
+@use '../abstracts' as *;
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 20px 30px 40px ;
+  margin: 0 30px;
+  box-sizing: border-box;
+
+  @include media-down(md) {
+    gap: 16px;
+    padding: 10px 16px 30px;
+  }
+}
+
+.certification-card {
+  margin: 0;
+  padding: 14px;
+  background-color: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-cert;
+
+  a {
+    display: block;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    border-radius: $radius-md;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: $black;
+  }
+
+  @include media-down(md) {
+    padding: 10px;
+
+    img {
+      height: 180px;
+    }
+  }
+}

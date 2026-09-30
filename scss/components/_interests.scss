@@ -1,0 +1,54 @@
+@use '../abstracts' as *;
+
+.interests-container {
+  padding: 20px;
+}
+
+.interests-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.interest-item {
+  flex: 1 1 20%;
+  max-width: 300px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $navy;
+  transition: background-color $transition-base;
+
+  &:hover {
+    background-color: $navy-hover;
+  }
+
+  @include media-down(lg) {
+    flex-basis: 150px;
+    max-width: 150px;
+  }
+
+  @include media-down(md) {
+    flex-basis: 100px;
+    max-width: 100px;
+  }
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: $white;
+  }
+}
+
+.icon-image {
+  width: 30px;
+  height: auto;
+}

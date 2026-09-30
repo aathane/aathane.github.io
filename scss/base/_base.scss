@@ -1,0 +1,61 @@
+@use '../abstracts' as *;
+
+// Palette exposée en custom properties
+:root {
+  @each $name, $value in $palette {
+    --#{$name}: #{$value};
+  }
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  background-color: $black;
+  font-family: $font-body;
+}
+
+a {
+  color: $green;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:focus-visible {
+    outline: 2px solid $pink;
+    outline-offset: 3px;
+  }
+}
+
+// Listes : même rendu que les paragraphes
+ul,
+li {
+  @include body-text;
+  line-height: 1.6;
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+// Accessibilité : respecte la préférence « réduire les animations »
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

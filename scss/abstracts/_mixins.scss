@@ -1,0 +1,64 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// Media query « jusqu'à » un breakpoint : @include media-down(md) { ... }
+@mixin media-down($name) {
+  @media (max-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}
+
+// Texte courant (p, ul, li)
+@mixin body-text {
+  font-family: $font-body;
+  font-size: clamp(16px, 2.5vw, 20px);
+  text-align: justify;
+  color: $gray;
+  margin: 5px 0 20px;
+}
+
+// Titre avec surlignage animé au survol (h3, h4)
+@mixin heading-highlight($size, $highlight-color, $highlight-height) {
+  font-family: $font-heading;
+  font-size: $size;
+  color: $gray;
+  margin: 40px 0 20px;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: $highlight-height;
+    background-color: $highlight-color;
+    transition: width $transition-base;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  @include media-down(md) {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+// Bulle d'info (utilisée par .description et .skill-badge-text)
+@mixin tooltip($bottom, $right) {
+  position: absolute;
+  bottom: $bottom;
+  right: $right;
+  width: 110px;
+  padding: 5px 10px;
+  font-size: 16px;
+  text-align: center;
+  color: $white;
+  background-color: rgba($black, 0.6);
+  border-radius: $radius-sm;
+  transition: opacity $transition-base, visibility $transition-base;
+}

@@ -9,17 +9,420 @@
     <h4>Liens</h4>
 
     <p>
-        Pour plus de detail je vous invite a <a class="link" href="https://drive.google.com/file/d/1fZQ8H8_WfI26BRdjTj2gsGsx6V6ozQJU/view?usp=sharing">lire le rapport </a> ou a <a class="link" href="https://github.com/Gilles-Maurer-Organization/AI50_patrolling">explorer le code source</a> du projet</p>
+        Pour plus de detail je vous invite a <a class="link" href="https://drive.google.com/file/d/1IqQjY6QLHCOGYxJNA0ZBfRfwdKqBobfF/view?usp=sharing">lire le rapport </a> ou a <a class="link" href="https://github.com/Gilles-Maurer-Organization/AI50_patrolling">explorer le code source</a> du projet</p>
     </p>
-
-
-    <h4>Présentation du projet</h4>
+    
+    <h4>Description du problème</h4>
 
     <p>
-        Ce projet simule un système de patrouille multi-agents pour les musées. Les agents se déplacent de manière optimale pour surveiller toutes les salles. L'application s'appuie sur des techniques d'intelligence artificielle, particulièrement inspirées de l'optimisation des colonies de fourmis et d'autres algorithmes de recherche de chemin, tels que les algorithmes évolutionnaires et le regroupement par k-moyennes, pour calculer les itinéraires de patrouille les plus efficaces pour les agents.
-Le système dispose également d'une interface graphique permettant de visualiser la carte du musée, de créer des nœuds et des arêtes représentant les salles et les chemins, et de configurer dynamiquement les paramètres.
+        Cette page présente mon projet de fin d'études réalisé en équipe. Le projet consiste à résoudre le problème de patrouille multi-agents, où plusieurs agents doivent
+        surveiller efficacement une région géographique représentée par un graphe de nœuds. L'objectif est de
+        maximiser la couverture de la région tout en respectant certaines contraintes.<br><br>
+
     </p>
- 
+
+    <h5>Choix du cas d'étude</h5>
+    
+    <p>
+    Le cas d'étude choisi pour ce projet est la surveillance de musées à l'aide d'agents patrouilleurs. Dans
+    ce contexte, les musées peuvent être modélisés comme des graphes, où les nœuds représentent les zones
+    à surveiller et les arêtes représentent les chemins empruntés par les agents.
+    L'application créée correspond donc aux besoins qu'aurait une entreprise de surveillance chargée de
+    planifier la surveillance de musées.
+
+    Ce cas d'étude nous a notamment permis de déduire des fonctionnalités essentielles qui seront détaillées à la suite de ce rapport, comme la possibilité pour l'utilisateur d'importer de nouveaux plans
+
+    dans l'application, de modifier les plans, d'indiquer le nombre d'agents souhaités, etc.
+    </p>
+    <br>
+    <h5>Mesure de performance</h5>
+
+    <p>
+    Afin que l'utilisateur puisse évaluer la qualité de la solution, et pour que nous puissions mesurer
+    l'efficacité de nos algorithmes de résolution, il était essentiel de définir la manière dont nous allions
+    évaluer la performance d'une solution.</br>
+    Pour cela, nous avons choisi d'utiliser le concept d'oisiveté. L'oisiveté mesure la négligence d'une
+    zone dans le cadre de la patrouille. Chaque zone du graphe possède une oisiveté, c'est-à-dire une mesure du
+    temps écoulé depuis la dernière visite d'un agent dans cette zone. Plus une zone reste in occupée longtemps,
+    plus son oisiveté augmente. Le but de la patrouille est de minimiser cette oisiveté pour chaque zone, en garantissant que les agents reviennent régulièrement dans toutes les parties de
+    la région surveillée. </br>
+    Nous utiliserons l'oisiveté de deux manières différentes pour mesurer la performance de nos solutions.
+    La première consistera à analyser l'oisiveté moyenne de chaque zone, et la seconde à comparer l'oisiveté
+    maximale atteint en un point. Ces deux données nous permettrons de comparer pertinemment deux
+    solutions et de mesurer les performances de nos algorithmes.
+    </p>
+
+    
+    <h4>Methodologie</h4>
+
+    <p>
+    Une approche Agile, accompagnée de réunions hebdomadaires, a été adoptée pour assurer une gestion
+efficace du projet. Ces réunions permettent de faire le point sur les fonctionnalités et correctifs réalisés
+durant la semaine, ainsi que d'aborder les nouvelles fonctionnalités à développer pour la semaine
+suivante.</br>
+
+    Des issues ont été attribuées à chaque membre de l'équipe tout au long du développement, afin de
+garantir la prise en charge de toutes les fonctionnalités essentielles et d'assurer une répartition claire
+des tâches. Cela a permis de maintenir une vision précise de l'avancement du projet et de garantir
+qu'aucune tâche cruciale n'était négligée.</br>
+
+    Des milestones ont été définies, représentant des dates clés pour le rendu de versions stables du pro-
+gramme, afin de respecter les délais et garantir une progression régulière du projet.
+    </p>
+    
+    <div class="projet_detail_image_container">
+        <img src="assets\img\project\ai50_milestone.png" class="projet_detail_image" alt="Milestone">
+    </div>
+    <p class="projet_detail_legende">Milestone version Alpha du programme</p>
+    
+    <h4>Architecture du programme</h4>
+
+    <p>
+        Pour structurer et organiser le code, le projet adopte une architecture MVC (Modèle-Vue-Contrôleur),
+        qui sépare les responsabilités en trois composants principaux :
+    </p>
+
+    <ul>
+        <li>
+            <strong>Modèle :</strong>
+            Le modèle contient les données et la logique de traitement, comme les informations
+            relatives au graphe (liste des noeuds du graphe, liste des liens entre les noeuds) ou les informations
+            relatives aux agents. Cette couche représente le "coeur" des données, indépendant de la manière
+            dont elles sont affichées ou manipulées. En isolant la logique métier dans le modèle, il est plus
+            facile de maintenir et de tester les fonctionnalités centrales du projet sans dépendre de l'interface
+            utilisateur.
+        </li>
+
+        <li>
+            <strong>Vue :</strong>
+            La vue gère l'affichage et l'interface utilisateur. Elle se charge de visualiser les agents
+            en mouvement, les salles du musées (représentées sous forme de noeuds) et les liens entre elles,
+            ainsi que les boutons de paramétrage de la simulation. La séparation de la vue permet d'adapter
+            l'interface graphique indépendamment des données.
+        </li>
+
+        <li>
+            <strong>Contrôleur :</strong>
+            Le contrôleur relie le modèle et la vue en gérant la logique des interactions. Il
+            reçoit les entrées utilisateur et les traduit en actions sur le modèle, tout en mettant à jour la vue.
+        </li>
+    </ul>
+
+    <div class="projet_detail_image_container">
+        <img src="assets\img\project\ai50_controleurs.png" class="projet_detail_image" alt="Controleur">
+    </div>
+    
+    <p class="projet_detail_legende">Contrôleurs principaux du programme</p>
+
+    <p>
+
+    En complément de l'architecture MVC, le projet utilise des services pour gérer certaines tâches spéci-
+    fiques, sans lien direct avec la structure MVC, allégeant ainsi les contrôleurs et améliorant la lisibilité
+    du code. Par exemple, la sauvegarde d'un graphe dans un fichier CSV est réalisée par un service dédié,
+    qui prend en charge les données du graphe (comme la liste des noeuds et les liens entre chaques noeuds)
+    avant de les enregistrer dans le fichier CSV en question. Ce service de gestion des fichiers CSV assure
+    une logique de sauvegarde cohérente et réutilisable, permettant ainsi de garder le contrôleur concentré
+    sur les interactions entre la vue et les modèles.
+    </p>
+
+    <div class="projet_detail_image_container">
+        <img src="assets\img\project\ai50_architecture.png" class="projet_detail_image" alt="Architecture">
+    </div>
+
+    <p class="projet_detail_legende">Architecture globale du projet</p>
+
+    <h4>Algorithme ACO</h4>
+
+    <p>
+        Dans la solution que nous avons mis en place, au moins trois algorithmes seront utilisés et com-
+        parés. Le premier est volontairement simple, afin de démontrer que les autres offrent de meilleures
+        solutions par rapport à une approche naïve. Cette diversité d'algorithmes impose une uniformité des
+        entrées et sorties.</br>
+        Ainsi, chacun d'entre eux prend en entrée un graphe complet et fournit en sortie le parcours que
+        chaque agent devra effectuer.</br>
+        Je présenterai ici en détail l'algorithme ACO, car c'est celui que j'ai implémenté.
+Pour voir le détail des autres algorithmes, je vous invite à explorer le rapport ou le code source.
+    </p>
+
+    <h5>Présentation de l'algorithme</h5>
+
+    <p>
+        Avant de voir comment mettre en place un algorithme qui utilise l'algorithme des fourmis
+        (ACO) pour un problème multi-agent, rappelons les principes de l'algorithme ACO classique. <br><br>
+
+        Afin de reproduire ses capacités intéressantes, des chercheurs ont décidés de s'inspirer du comportement
+        collaboratif des fourmis pour créer un algorithme d'optimisation. Publié en 1996 « The Ant System: Optimization
+        by a colony of cooperating agents » par Marco Dorigo, Vittorio Maniezzo et Alberto Colorni [2], introduit
+        cet algorithme appelé couramment « ACO ». Dans ce papier, les auteurs vantent la robustesse et la polyvalence
+        de leurs algorithmes. En effet, même si individuellement certaines fourmis artificielles peuvent échouer dans
+        leurs tâche, l'algorithme repose sur un système de colonie et utilise la rétroaction positive et le calcul distribué
+        comme principal mécanisme de recherche. Cela fait que collectivement, ces fourmis artificielles sont capables
+        d'adapter leurs comportements aux changements de l'environnement et ainsi trouver des solutions optimales.<br><br>
+
+        Pour que l'ACO soit appliqué à un problème, celui-ci doit être formulé en termes de recherche sur un graphe.
+        Sous cette condition, les fourmis artificielles peuvent construire une solution au problème donné, en échangeant
+        des informations par le biais de phéromones déposées sur les nœuds du graphe du problème. En se déplaçant, les
+        fourmis modifient la représentation du problème en ajoutant les informations collectées au graphe.<br><br>
+
+        L'ACO n'ayant pas pour objectif d'être une simulation fidèle des fourmis naturelle, ces fourmis artificielles
+        présentent d'importantes différences par rapport aux fourmis réelles. Elles disposent ainsi d'une mémoire pour
+        enregistrer les nœuds où elles se sont rendues et ont une vision basée sur la distance et les phéromones.<br><br>
+    </p>
+    
+    <strong>L'Algorithme ACO</strong>
+    <p>
+        La méthode ACO (Ant Colony Optimization) est une méta-heuristique inspirée du comportement des fourmis dans leur
+        recherche de nourriture. Lorsq'une fourmi doit choisir une direction, elle privilégie le chemin avec la plus
+        forte concentration en phéromones.
+    </p>
+
+    <strong>Probabilité</strong>
+
+<h5>Adaptation au problème de patrouille multi-agents (MAPP)</h5>
+
+<p><strong>Les agents</strong></p>
+
+<p>
+Le problème de patrouille multi-agents repose essentiellement sur des agents. On
+considère ici que une fourmi correspond à un agent. Les fourmis avancent les unes
+après les autres, et la liste taboue des villes déjà visitées par une fourmi devient
+une liste commune à toute la colonie, de sorte qu'aucune fourmi ne puisse emprunter
+un chemin déjà parcouru par une autre.<br><br>
+
+Une fois que tout les nœuds ont été visités par les fourmis, une liste de chemins est
+récupéré. Chaque élément de la liste correspondant au chemin de patrouille effectué par
+un agent. Une fois cette étape terminée pour une colonie, on passe à la colonie suivante.
+</p>
+
+<p><strong>Les colonies</strong></p>
+
+<p>
+Dans l'algorithme ACO classique, une fourmis fait le tour complet du graphe. Pour permettre
+une meilleur recherche des solutions, n fourmis font cette étape avant de mettre à jour une
+matrice des pheromones. Avec notre adaptation de l'algorithme ACO au MAPP, les n fourmis
+se répartissent un tour du graph entre elles et correspondent à n agent. La recherche des solution est donc limitée.
+C'est pour cella que, en plus des n fourmis, nous ajoutons m colonies.<br><br>
+
+Plusieurs colonies vont ainsi être mis en compétition les unes avec les autres. Cella permet
+une meilleur recherche des solutions et évite que l'algorithme reste bloqué dans un minimum local.
+Ces colonies, tout comme les fourmis dans l'algorithme ACO, vont se partager une matrice de
+phéromones qui serra mis à jour après chaque itération.
+</p>
+
+<p><strong>Matrice des pheromones</strong></p>
+
+<p>
+Une matrice de phéromone globale, partagée entre les colonies, permet au bout d'un 
+certain nombre d'itération une convergence entre les colonies vers une solution optimale 
+approchée. Nous avons opté pour cette approche, préférant une matrice de phéromones 
+partagée entre les colonies plutôt que d'attribuer une matrice individuelle à chacune, 
+afin de limiter le risque que chaque colonie se retrouve piégée dans un minimum local. 
+L'utilisation de cette matrice globale permet une recherche plus vaste et donc une 
+convergence vers une meilleure solution.<br><br>
+
+Cette matrice des phéromones est mise a jour en fonction de la distance totale de tout 
+les agents d'une colonie et non en fonction de l'oisiveté car nous considérons que l'oisiveté
+de tout les nœuds augmente à la même vitesse, et donc l'oisiveté diminuera si la distance
+totale diminue.
+</p>
+
+<h5>Ameliorations apportés</h5>
+
+Nous avons vu la base de l'algorithme ACO adapté au problème de patrouille, 
+multi-agents. Avant de voir l'implémentation de cet algorithme, il nous reste 
+à détailler toutes les améliorations que nous avons apportées à celui-ci pour 
+améliorer ces performances.
+
+
+<p><strong>Initialisation des agents</strong></p>
+
+<p>
+    L'un des aspects que nous n'avons pas encore abordé est l'initialisation des
+    agents. En effet, il s'agit de la première étape de l'algorithme. Si les agents
+    sont mal initialisés alors même avec un bon algorithme la solution obtenue peut
+    être mauvaise. Un exemple d'initialisation insatisfaisante est le cas où des
+    agents sont initialisés sur le chemin optimal d'un autre agent. Car en effet,
+    cet agent ne pourra plus passer par ses nœuds et devra faire un détour.
+    Pour parer à cette éventualité, il est intéressant d'initialiser les agents
+    le plus loin possible les uns des autres. En effet le chemin optimal d'un agent
+    passe généralement par les nœuds autour de son nœud de départ.<br><br>
+    
+    Notre fonction d'initialisation utilise ce principe, mais ajoute de l'aléatoire
+    dedans. La fonction commence par récupérer le point le plus éloigné de tous les
+    autres pour y placer un agent. Ensuite, un calcul de probabilité biaisé en
+    fonction de la distance des points par rapport à cet agent est effectué et
+    un nombre aléatoire est tiré pour déterminer la position du 2e agent et ainsi
+    de suite jusqu'à ce que tous les agents soient initialisée. L'aléatoire
+    permet d'explorer plusieurs positions initiales qui pourraient être
+    intéressantes.<br><br>
+    
+    Afin d'optimiser cette position initiale, nous appelons plusieurs fois cette
+    fonction d'initialisation en fonction des colonies de la manière suivante :
+    Lors de la première itération, toutes les colonies sont initialisées avec cette
+    fonction d'initialisation. Après la création des chemins pour chaque colonie,
+    nous sélectionnons la colonie avec le meilleur chemin et nous gardons en
+    mémoire les points initiaux de celle-ci. Lors de l'itération suivante, nous
+    les affectons à une colonie avant d'appeler la fonction pour initialiser les
+    autres colonies. Lors de la 3e itération, nous prenons le meilleur chemin une
+    nouvelle fois et nous l'affection à 2 colonies avant d'initialiser les autres
+    colonies avec la fonction d'initialisation, et ainsi de suite jusqu'à ce que
+    toutes les colonies soient initialisées avec le chemin ayant le meilleur chemin
+    trouvé.
+</p>
+
+### Mise a jour de la matrice des pheromones
+
+<p>
+    Pour mettre à jour les phéromones, nous avons initialement pensé à faire une
+    matrice commune à toutes les colonies et à mettre à jour cette matrice en
+    fonction de toutes les colonies de fourmis, en mettant à jour les phéromones
+    selon la distance totale de chaque colonie.<br><br>
+    
+    Cependant, après une étude approfondie de travaux de recherche [3], nous avons
+    opté pour une méthode différente : la matrice globale de phéromones est
+    désormais mise à jour uniquement sur la base de la colonie ayant trouvé le
+    meilleur chemin. Ceci permet un bon compromis entre exploration des chemins
+    et convergence vers un chemin optimal.
+</p>
+
+### Mouvement des fourmis
+
+<p>
+    Initialement, le chemin des fourmis était construit en avançant les fourmis un
+    nœud par un nœud les unes après les autres. Ceci était limitatif, car cela
+    signifie que les fourmis, à un nœud prêt, possédaient toutes le même nombre de
+    nœuds. Or, il est plus intéressant que les fourmis se partagent les nœuds, non
+    pas en fonction du nombre de nœuds, mais en fonction de la distance qu'elles
+    parcours. Car par exemple, si une carte possède 10 points très proches les uns
+    des autres et 2 très très éloignés, pour une patrouille avec 2 agents, il est
+    plus intéressant qu'un agent parcoure les 10 point proches et qu'un autre
+    alterne les 2 éloignés.<br><br>
+    
+    C'est pour cela que désormais pour former un chemin complet avec tous les
+    agents, nous recherchons la fourmi avec le chemin le plus court pour la faire
+    avancer. Si plusieurs fourmis ont la même longueur de chemin alors la fourmi
+    avec l'index de le plus bas sera celle qui avancera. Cette modification permet
+    d'augmenter les performances de l'algorithme et permet une meilleure
+    flexibilité en fonction des instances.
+</p>
+
+### Phase de négociation
+
+<p>
+    Étant donné que tous les nœuds doivent être parcourus, il peut arriver des cas
+    où une fourmi se retrouve à devoir parcourir un nœud éloigné, car, la majorité
+    des nœuds ayant déjà et emprunte, elle n'a plus de choix quant au nœud suivant
+    qu'elle doit parcourir. Le problème étant que même avec un chemin le plus
+    optimisé possible, si un seul nœud se retrouve très éloigné du chemin d'une
+    fourmi alors l'oisiveté peut considérablement augmenter.<br><br>
+    
+    Pour éviter de se retrouver dans ce cas, nous avons décidé d'ajouter une phase
+    de négociation entre les agents. Ce mot reflète en réalité une fonction très
+    simple où, à la fin de la répartition des chemins entre les agents, chaque
+    agent va essayer de se débarrasser de son nœud le plus éloigné. Ces nœuds
+    seront ensuite redistribués à l'agent qui passe par le point le plus proche de
+    ce nœud. Ce nœud sera visité juste après le passage de ce nœud proche par
+    l'agent afin de lui éviter un détour.
+</p>
+
+### Nœud de graph complet a vrai graph
+
+<p>
+    Pour que l'algorithme des fourmis puisse fonctionner, il faut lui donner un
+    graphe complet. Or, les graphes sur lesquels nous travaillons ne sont pas
+    complets. Comme nous l'avons déjà vu précédemment, une phase de transition du
+    graphe réel un graphe complet est effectué en amont.<br><br>
+    
+    Le problème étant que lorsque nous passons à la simulation, il se peut que des
+    agents, pour passer d'un nœud à un autre, doivent passer par des nœuds
+    intermédiaires. Et il se peut que d'autres agents passent par ces nœuds
+    intermédiaires. Ceci créer un déplacement inutile pour l'agent, car celui-ci
+    est déjà visité par un autre agent. Pour éviter ceci, lorsque nous mettons à
+    jour la matrice des phéromones, si un agent passe d'un nœud A a vers un nœud C
+    en passant par un nœud B, alors nous mettons à jour la liste taboue pour dire
+    que le nœud B est visité par l'agent. Nous mettrons aussi à jour la matrice des
+    phéromones en considérant ce passage intermédiaire. Cela permet d'éviter les
+    chemins inutiles.
+</p>
+
+### Normalisation
+
+<p>
+    La matrice de coûts est normalisée en divisant chaque distance par la plus
+    petite distance. Cette normalisation présente plusieurs avantages : elle permet
+    de rendre les valeurs de la matrice comparables en les exprimant dans un même
+    ordre de grandeur, ce qui stabilise le comportement des algorithmes
+    d'optimisation. En effet, des écarts trop importants entre les coûts pourraient
+    entraîner un déséquilibre dans le processus de recherche des solutions
+    optimales. De plus, cette approche évite tout biais potentiel lié à des
+    distances disproportionnées et améliore la généralisation des résultats,
+    rendant les performances des algorithmes comparables sur différentes instances
+    de problèmes ou configurations de cartes.
+</p>
+
+### Paramètres
+
+<p>
+    Afin d'optimiser les résultats, il est important de définir de bons paramètres.
+    Pour trouver ces paramètres, nous avons mis en place un code qui lance
+    l'algorithme pour plusieurs valeurs de ces paramètres puis nous avons visualisé
+    ces résultats (figure 2).<br>
+    
+    
+    ![Evolution de la distance en fonction des paramètres](img_fourmis/parametres.png)
+    
+    **Figure 2**: Visualization de l'evolution des performances de l'algorithme en
+    fonction des paramètres, pour l'instance 2.
+    
+    Les paramètres optimaux semblent être : Alpha = 1, Bêta = 3 ou 4,
+    taux d'évaporation = 0.1 ou 0.4. Le nombre de colonies a été fixe à 5 pour les 2
+    plus petites instances et 10 pour les 2 plus grandes (voir la partie résultats
+    pour plus d'informations sur les instances).
+</p>
+
+    <h4>Résultats</h4>
+
+    <p>Pour chacune des instances citées ci-dessus, nous avons simulé la patrouille des agents en fonction
+des chemins fournis par les algorithmes. La simulation a duré 2 minutes. Nous avons enregistré
+toutes les 10 secondes l'oisiveté maximale obtenue durant la simulation et l'oisiveté moyenne lors de
+l'enregistrement. Et ce, trois fois pour chaque algorithme. Les résultats sont présentés ci-dessous et les
+données sous forme CSV sont disponibles si besoin.<p>
+
+        <div class="projet_detail_image_container">
+        <img src="assets\img\project\instance_1_atmi.png" class="projet_detail_image" alt="Resultats 1">
+    </div>
+    <p class="projet_detail_legende">Comparaison de l'oisiveté maximale pour l'instance 1</p>
+
+        <div class="projet_detail_image_container">
+        <img src="assets\img\project\instance_2_atmi.png" class="projet_detail_image" alt="Resultats 4">
+    </div>
+    <p class="projet_detail_legende">Comparaison de l'oisiveté maximale pour l'instance 2</p>
+
+        <div class="projet_detail_image_container">
+        <img src="assets\img\project\instance_3_atmi.png" class="projet_detail_image" alt="Resultats 3">
+    </div>
+    <p class="projet_detail_legende">Comparaison de l'oisiveté maximale pour l'instance 3</p>
+
+        <div class="projet_detail_image_container">
+        <img src="assets\img\project\instance_4_atmi.png" class="projet_detail_image" alt="Resultats 4">
+    </div>
+    <p class="projet_detail_legende">Comparaison de l'oisiveté maximale pour l'instance 4</p>
+<br>
+<p>
+    Suite a l'analyse de ces instances, nous pouvons affirmer que les deux algorithmes naïfs sont les moins
+performants, les algorithmes k-mean et génétique viennent ensuite, l'un étant meilleur que l'autre et
+inversement en fonction de la disposition des nœuds et des spécialité de la carte. Enfin, l'algorithme
+des colonies de fourmis est systématiquement le plus performant, montrant une bonne adaptabilité des
+fourmis aux spécificités de la carte.<br><br>
+
+Ces résultats sont ce à quoi nous nous attendions, car les algorithmes naïfs se contentent d'exécuter des
+règles simples sans tenir compte de la configuration spécifique de la carte. À l'inverse, les algorithmes
+k-means et génétique exploitent des heuristiques plus élaborées, ce qui explique leur performance intermédiaire
+et leur variabilité selon la disposition des nœuds. Enfin, l'algorithme des colonies de fourmis
+
+bénéficie d'une approche itérative et adaptative, où les fourmis renforcent progressivement les chemins
+optimaux en fonction de leurs expériences, d'où sa supériorité constante, quel que soit le contexte.
+</p>
     <h4>Outils et technologies :</h4>
 
     <div class="card-container long">
@@ -28,4 +431,15 @@ Le système dispose également d'une interface graphique permettant de visualise
             <p class="card-description">Python</p>
         </div>
     </div>
+
+
+
+    <!-- github
+    python
+    pygame-ce
+    unittest
+    github actions
+    tox
+    sonarcloud -->
+
 </div>

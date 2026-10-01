@@ -24,8 +24,18 @@ h4 {
   @include heading-highlight(clamp(20px, 4vw, 35px), $green-translucent, 0.45em);
 }
 
+h5 {
+  @include heading-highlight(clamp(15px, 3vw, 30px), $green-translucent, 0.45em);
+}
+
+
 p {
   @include body-text;
+}
+
+strong {
+  @include body-text;
+  font-weight: 700;
 }
 
 // Titre « About » (police display)

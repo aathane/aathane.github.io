@@ -152,12 +152,48 @@ h4:hover::after {
   }
 }
 
+h5 {
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(15px, 3vw, 30px);
+  color: #4b4b47;
+  margin: 40px 0 20px;
+  position: relative;
+  display: inline-block;
+}
+h5::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.45em;
+  background-color: rgba(46, 173, 148, 0.42);
+  transition: width 0.3s ease;
+}
+h5:hover::after {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  h5::after {
+    width: 100%;
+  }
+}
+
 p {
   font-family: "Lora", Georgia, sans-serif;
   font-size: clamp(16px, 2.5vw, 20px);
   text-align: justify;
   color: #4b4b47;
   margin: 5px 0 20px;
+}
+
+strong {
+  font-family: "Lora", Georgia, sans-serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  text-align: justify;
+  color: #4b4b47;
+  margin: 5px 0 20px;
+  font-weight: 700;
 }
 
 .about {
@@ -585,8 +621,8 @@ hr.expand {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(56px, 4vw, 100px);
-  height: clamp(56px, 4vw, 100px);
+  width: clamp(56px, 3.5vw, 90px);
+  height: clamp(56px, 3.5vw, 90px);
   background-color: #f7f7f4;
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(10, 9, 8, 0.25);
@@ -1264,10 +1300,6 @@ hr.expand {
   transform: translateX(0); /* Fait apparaître le fond vert */
 }
 
-.project-wrapper:hover .project-text h1 {
-  font-size: 3.5em; /* Agrandissement du titre */
-}
-
 /* BIG NUMBER */
 .number-container {
   position: absolute;
@@ -1291,6 +1323,28 @@ hr.expand {
   margin: 0; /* Élimine les marges */
   padding: 0; /* Élimine les remplissages */
   font-family: "Lora", Georgia, serif !important;
+  text-shadow: 0 0 0 rgba(65, 65, 65, 0);
+}
+
+.projet_detail_image_container {
+  width: fit-content;
+  max-width: 100%;
+  margin: 25px auto 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.projet_detail_image {
+  display: block;
+  max-width: 100%;
+  max-height: 450px;
+  width: auto;
+  height: auto;
+}
+
+.projet_detail_legende {
+  text-align: center;
+  font-style: italic;
+  margin: 8px 0 15px;
 }
 
 /* Animation pour le changement de couleur */
@@ -1319,30 +1373,45 @@ hr.expand {
   .project-container {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 18/9; /* adapte la hauteur automatiquement */
+    aspect-ratio: 18/9;
     background-size: cover;
     background-position: center;
     position: relative;
+    overflow: hidden;
   }
   .project-text {
-    position: absolute; /* passe en positionnement absolu */
-    bottom: 10px; /* colle le bas */
-    left: 0; /* étend sur toute la largeur */
+    position: absolute;
+    bottom: 40px;
+    left: 0;
     width: 100%;
     background-color: rgba(10, 9, 8, 0.6);
-    padding: 10px; /* Padding uniforme */
-    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
-    white-space: normal; /* Permet le retour à la ligne */
-    overflow-wrap: break-word; /* Coupe les mots longs si nécessaire */
-  }
-  /* Titre et texte plus petits pour mobile */
-  .project-text p:first-child {
-    font-size: 1.8em;
-    padding-bottom: clamp(20px, 8vw, 100px) !important;
+    /* Espacement haut/bas du contenu */
+    padding: 15px 10px;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
+    /* Centrage du contenu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
   }
+  /* Titre et texte sur mobile */
+  .project-text p:first-child {
+    font-size: 1.8em;
+    text-align: center;
+    margin: 0;
+    padding: 8px 0 !important;
+  }
+  /* Cacher la présentation sur mobile */
   .project-text .presentation {
     display: none;
+  }
+  /* Désactiver complètement l'effet hover sur mobile */
+  .project-wrapper:hover .project-text {
+    transform: none !important;
+    font-size: inherit !important;
+    transition: none !important;
   }
   /* Cacher les décorations desktop */
   .green-background,
@@ -1406,39 +1475,49 @@ hr.expand {
   background-color: transparent;
 }
 
-/* Double la taille du container au format mobile */
-@media (max-width: 768px) {
-  .close-button-container {
-    height: calc(clamp(40px, 6vw, 80px) * 2); /* Double la hauteur */
-  }
-  /* Double la taille de la croix au format mobile */
-  .close-button {
-    font-size: calc(clamp(30px, 4vw, 80px) * 2); /* Double la taille */
-  }
-}
 /* ——— Style de base ——— */
 .close-button {
   position: absolute;
-  top: 0;
-  right: calc(clamp(10px, 3vw, 100px) * -1);
-  font-size: clamp(30px, 4vw, 80px);
+  top: 10px;
+  right: calc(clamp(20px, 10vw, 100px) * -1 + 15px);
+  font-size: 50px;
+  line-height: 1;
   cursor: pointer;
   font-weight: bold;
   color: #ff0054;
   transition: color 0.5s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
 }
 .close-button:hover {
   color: #390099 !important;
 }
+.close-button:focus, .close-button:active {
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+}
 
-/* ——— Mobile (<768px) ——— */
 @media (max-width: 768px) {
-  .close-button-container {
-    height: calc(clamp(40px, 6vw, 80px) * 2);
+  .modal {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #f7f7f4 !important;
+    overflow-y: auto;
+  }
+  .modal-content {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+    transform: none !important;
+  }
+  .modal.show {
+    background-color: #f7f7f4 !important;
   }
   .close-button {
-    /* on double simplement chaque paramètre de clamp */
-    font-size: clamp(60px, 8vw, 160px);
+    top: 10px;
+    right: 15px;
+    font-size: 60px;
   }
 }
 /* Masque la modale par défaut */

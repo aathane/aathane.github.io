@@ -41,8 +41,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(56px, 4vw, 100px);
-  height: clamp(56px, 4vw, 100px);
+  width: clamp(56px, 3.5vw, 90px);
+  height: clamp(56px, 3.5vw, 90px);
   background-color: $white;
   border-radius: 50%;
   box-shadow: $shadow-btn;
